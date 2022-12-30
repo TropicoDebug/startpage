@@ -11,6 +11,7 @@ if (isset($_POST['submit'])){
 ?>
 <html>
 <head>
+<meta user-scalable=no>
 <title>Start page</title>
 <link rel="stylesheet" href="style.css">
 </head>
