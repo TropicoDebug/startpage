@@ -3,8 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1); 
 error_reporting(E_ALL);
 
-if (isset($_GET['submit'])){
-  $search = urlencode($_GET['search']);
+if (isset($_POST['submit'])){
+  $search = urlencode($_POST['search']);
   header('Location: https://www.google.com/search?q='.$search);
 }
 
@@ -15,7 +15,7 @@ if (isset($_GET['submit'])){
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="index.php" method="GET">
+    <form action="index.php" method="POST">
     <label for="search">What are you looking for ? :</label><br>
     <input type="text" id="search" name="search"><br><br>
     <input type="submit" value="Submit" name="submit">
