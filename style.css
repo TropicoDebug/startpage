@@ -69,13 +69,19 @@ input[id=search]:focus {
 body{
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 form{
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+#bottom-container{
+  margin-top: auto;
+  margin-bottom: 20px;
 }

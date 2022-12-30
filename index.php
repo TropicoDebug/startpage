@@ -21,5 +21,8 @@ if (isset($_POST['submit'])){
     <input type="text" id="search" name="search"><br><br>
     <input type="submit" value="Submit" name="submit">
   </form> 
+  <div id="bottom-container">
+    <p><a href="https://www.github.com" target="_blank">github</a></p>
+  </div>
 </body>
 </html>
