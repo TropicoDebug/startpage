@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if (isset($_GET['submit'])){
-  $search = $_GET['search'];
+  $search = urlencode($_GET['search']);
   header('Location: https://www.google.com/search?q='.$search);
 }
 
