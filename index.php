@@ -11,7 +11,7 @@ if (isset($_POST['submit'])){
 ?>
 <html>
 <head>
-<meta user-scalable=no>
+<meta name = "viewport" content = "width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no">
 <title>Start page</title>
 <link rel="stylesheet" href="style.css">
 </head>
