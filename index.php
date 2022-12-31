@@ -17,7 +17,7 @@ if (isset($_POST['submit'])){
 </head>
 <body>
     <form action="index.php" method="POST">
-    <label for="search">What are you looking for ? :</label><br>
+    <label for="search">What are you looking for bro ? :</label><br>
     <input type="text" id="search" name="search" autofocus><br><br>
     <input type="submit" value="Submit" name="submit">
   </form> 
