@@ -20,7 +20,7 @@ if (isset($_POST['submit'])){
   <div id="bg-image"></div>
   <main>
     <form action="index.php" method="POST">
-    <label for="search" id="labelsearch" class="noselect">
+    <label for="search" id="labelsearch" class="noselect" autocomplete="off">
       <script>
         Tutor()
         setInterval(callBlinkChar, 700);
