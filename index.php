@@ -19,7 +19,7 @@ if (isset($_POST['submit'])){
   <div id="bg-image"></div>
   <main>
     <form action="index.php" method="POST">
-    <label for="search" id="labelsearch">
+    <label for="search" id="labelsearch" class="noselect">
       <script>
         function sleep(ms) {
           return new Promise(resolve => setTimeout(resolve, ms));
