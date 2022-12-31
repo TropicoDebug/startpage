@@ -16,15 +16,60 @@ if (isset($_POST['submit'])){
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="bg-image"></div>
+  <main>
     <form action="index.php" method="POST">
-    <label for="search">What are you looking for ?</label><br>
-    <input type="text" id="search" name="search" autofocus><br><br>
-    <input id="submit" type="submit" value="Submit" name="submit">
-  </form> 
-  <div id="bottom-container">
-    <div class="link-container">
-      <a href="https://www.github.com">github</a>
+    <label for="search" id="labelsearch">
+      <script>
+        function sleep(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        async function Tutor() {
+          var myText = "What are you looking for ";
+          var text = "";
+          for (let i = 0; i < myText.length ; i++) {
+            await sleep(Math.floor(Math.random() * 60) + 1);
+            text += myText[i];
+            document.getElementById('labelsearch').innerHTML = text;
+          }
+          document.getElementById('labelsearch').innerHTML = text + "<span id=\"blink\">?</span>";
+        }
+        function blinkChar() {
+          var elem = document.getElementById('blink');
+          if (elem.style.visibility === 'hidden') {
+            elem.style.visibility = 'visible';
+          } else {
+            elem.style.visibility = 'hidden';
+          }
+        }
+        async function callBlinkChar(){
+          await sleep(Math.floor(Math.random() * 500) + 1);
+          blinkChar();
+        }
+        Tutor()
+        setInterval(callBlinkChar, 700);
+      </script>
+      </label><br>
+      <input type="text" id="search" name="search" autofocus><br><br>
+      <input id="submit" type="submit" value="Submit" name="submit">
+    </form> 
+    <div id="bottom-container">
+      <div class="link-container">
+        <a href="https://www.github.com">github</a>
+      </div>
+      <div class="link-container">
+        <a href="monkeytype.com">monkeytype</a>
+      </div>
+      <div class="link-container">
+        <a href="https://www.youtube.com">youtube</a>
+      </div>
+      <div class="link-container">
+        <a href="https://twitch.tv">twitch</a>
+      </div>
+      <div class="link-container">
+        <a href="https://chat.openai.com/chat">chatgpt</a>
+      </div>
     </div>
-  </div>
+  </main>
 </body>
 </html>
