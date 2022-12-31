@@ -7,7 +7,6 @@ if (isset($_POST['submit'])){
   $search = urlencode($_POST['search']);
   header('Location: https://www.google.com/search?q='.$search);
 }
-
 ?>
 <html>
 <head>
@@ -20,13 +19,13 @@ if (isset($_POST['submit'])){
   <div id="bg-image"></div>
   <main>
     <form action="index.php" method="POST">
-    <label for="search" id="labelsearch" class="noselect" autocomplete="off">
+    <label for="search" id="labelsearch" class="noselect">
       <script>
         Tutor()
         setInterval(callBlinkChar, 700);
       </script>
       </label>
-      <input type="text" id="search" name="search" autofocus>
+      <input type="text" id="search" name="search" autofocus autocomplete="off">
       <input id="submit" type="submit" value="Submit" name="submit">
     </form> 
     <div id="bottom-container" class="noselect">
