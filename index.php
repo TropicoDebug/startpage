@@ -25,24 +25,24 @@ if (isset($_POST['submit'])){
         setInterval(callBlinkChar, 700);
       </script>
       </label>
-      <input type="text" id="search" name="search" autofocus autocomplete="off">
+      <input type="text" id="search" name="search" autofocus autocomplete="off" spellcheck="false">
       <input id="submit" type="submit" value="Submit" name="submit">
     </form> 
-    <div id="bottom-container" class="noselect">
+    <div id="bottom-container">
       <div class="link-container">
-        <a href="https://www.github.com">github</a>
+        <a href="https://www.github.com" class="noselect">github</a>
       </div>
-      <div class="link-container" class="noselect">
-        <a href="https://monkeytype.com">monkeytype</a>
+      <div class="link-container">
+        <a href="https://monkeytype.com" class="noselect">monkeytype</a>
       </div>
-      <div class="link-container" class="noselect">
-        <a href="https://www.youtube.com">youtube</a>
+      <div class="link-container">
+        <a href="https://www.youtube.com" class="noselect">youtube</a>
       </div>
-      <div class="link-container" class="noselect">
-        <a href="https://twitch.tv">twitch</a>
+      <div class="link-container">
+        <a href="https://twitch.tv" class="noselect">twitch</a>
       </div>
-      <div class="link-container" class="noselect">
-        <a href="https://chat.openai.com/chat">chatgpt</a>
+      <div class="link-container">
+        <a href="https://chat.openai.com/chat" class="noselect">chatgpt</a>
       </div>
     </div>
   </main>
