@@ -53,20 +53,20 @@ if (isset($_POST['submit'])){
       <input type="text" id="search" name="search" autofocus><br><br>
       <input id="submit" type="submit" value="Submit" name="submit">
     </form> 
-    <div id="bottom-container">
+    <div id="bottom-container" class="noselect">
       <div class="link-container">
         <a href="https://www.github.com">github</a>
       </div>
-      <div class="link-container">
+      <div class="link-container" class="noselect">
         <a href="https://monkeytype.com">monkeytype</a>
       </div>
-      <div class="link-container">
+      <div class="link-container" class="noselect">
         <a href="https://www.youtube.com">youtube</a>
       </div>
-      <div class="link-container">
+      <div class="link-container" class="noselect">
         <a href="https://twitch.tv">twitch</a>
       </div>
-      <div class="link-container">
+      <div class="link-container" class="noselect">
         <a href="https://chat.openai.com/chat">chatgpt</a>
       </div>
     </div>
