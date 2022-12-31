@@ -58,7 +58,7 @@ if (isset($_POST['submit'])){
         <a href="https://www.github.com">github</a>
       </div>
       <div class="link-container">
-        <a href="monkeytype.com">monkeytype</a>
+        <a href="https://monkeytype.com">monkeytype</a>
       </div>
       <div class="link-container">
         <a href="https://www.youtube.com">youtube</a>
