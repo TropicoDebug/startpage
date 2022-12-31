@@ -81,7 +81,10 @@ form{
   align-items: center;
 }
 
+#submit{
+  display: none;
+}
+
 #bottom-container{
-  margin-top: auto;
   margin-bottom: 20px;
 }

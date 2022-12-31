@@ -17,12 +17,14 @@ if (isset($_POST['submit'])){
 </head>
 <body>
     <form action="index.php" method="POST">
-    <label for="search">What are you looking for bro ? :</label><br>
+    <label for="search">What are you looking for ?</label><br>
     <input type="text" id="search" name="search" autofocus><br><br>
-    <input type="submit" value="Submit" name="submit">
+    <input id="submit" type="submit" value="Submit" name="submit">
   </form> 
   <div id="bottom-container">
-    <p><a href="https://www.github.com" target="_blank">github</a></p>
+    <div class="link-container">
+      <a href="https://www.github.com">github</a>
+    </div>
   </div>
 </body>
 </html>
