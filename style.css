@@ -90,20 +90,26 @@ form{
 }
 
 input[id=search]{
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-     border-radius: 20px;
-     border: 1px solid #2d9fd9;
-     color: #a0d18c;
-     width: 250px;
-     height: 30px;
-     padding-left: 10px;
-    }
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  font-weight: bold;
+  color: white;
+  width: 250px;
+  height: 30px;
+  padding-left: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
     
 input[id=search]:focus {
-     outline: none;
-     border: 1px solid #a0d18c;
-     color: #2d9fd9;
+  outline: none;
+  border: 1px solid black;
+  color: white;
+}
+
+input[id=search]:hover{
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 #submit{
