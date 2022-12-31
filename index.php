@@ -49,8 +49,8 @@ if (isset($_POST['submit'])){
         Tutor()
         setInterval(callBlinkChar, 700);
       </script>
-      </label><br>
-      <input type="text" id="search" name="search" autofocus><br><br>
+      </label>
+      <input type="text" id="search" name="search" autofocus>
       <input id="submit" type="submit" value="Submit" name="submit">
     </form> 
     <div id="bottom-container" class="noselect">

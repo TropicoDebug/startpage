@@ -99,6 +99,7 @@ form{
 }
 
 input[id=search]{
+  margin-top: 15px;
   font-family: 'Comfortaa';
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
