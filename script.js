@@ -2,7 +2,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function Tutor() {
+async function defil() {
     var myText = "What are you looking for ";
     var text = "";
     for (let i = 0; i < myText.length ; i++) {
