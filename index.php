@@ -8,23 +8,18 @@ if (isset($_POST['submit'])){
   header('Location: https://www.google.com/search?q='.$search);
 }
 ?>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta name = "viewport" content = "width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no">
 <title>Start page</title>
 <link rel="stylesheet" href="style.css">
-<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
   <div id="bg-image"></div>
   <main>
     <form action="index.php" method="POST">
-    <label for="search" id="labelsearch" class="noselect">
-      <script>
-        defil();
-        setInterval(callBlinkChar, 700);
-      </script>
-      </label>
+      <label for="search" id="labelsearch" class="noselect"></label>
       <input type="text" id="search" name="search" autofocus autocomplete="off" spellcheck="false">
       <input id="submit" type="submit" value="Submit" name="submit">
     </form> 
@@ -46,5 +41,6 @@ if (isset($_POST['submit'])){
       </div>
     </div>
   </main>
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
