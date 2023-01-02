@@ -45,6 +45,6 @@ if (isset($_POST['submit'])){
       </div>
     </div>
   </main>
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="script/script.js"></script>
 </body>
 </html>
