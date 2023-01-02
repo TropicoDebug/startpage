@@ -150,7 +150,7 @@ input[id=search]:hover{
 }
 
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 550px) {
   #bottom-container{
     flex-direction: column;
   }
