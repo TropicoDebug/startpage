@@ -21,7 +21,7 @@ if (isset($_POST['submit'])){
     <form action="index.php" method="POST">
     <label for="search" id="labelsearch" class="noselect">
       <script>
-        defil()
+        defil();
         setInterval(callBlinkChar, 700);
       </script>
       </label>
