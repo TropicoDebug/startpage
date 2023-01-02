@@ -92,8 +92,12 @@ function callBlinkChar() {
 }
 function displayTime() {
     var currentTime = new Date();
-    var hours = currentTime.getHours();
-    var minutes = currentTime.getMinutes();
+    var hours = currentTime.getHours().toString();
+    if (hours.length == 1)
+        hours = "0" + hours;
+    var minutes = currentTime.getMinutes().toString();
+    if (minutes.length == 1)
+        minutes = "0" + minutes;
     var timeString = "".concat(hours, ":").concat(minutes);
     var clock = document.getElementById('clock');
     if (clock === null)

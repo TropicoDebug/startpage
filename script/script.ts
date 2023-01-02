@@ -31,10 +31,14 @@ async function callBlinkChar(){
 }
 
 function displayTime(){
-    const currentTime = new Date();
-    const hours = currentTime.getHours();
-    const minutes = currentTime.getMinutes();
-    const timeString = `${hours}:${minutes}`;
+    const currentTime:Date = new Date();
+    var hours:string = currentTime.getHours().toString();
+    if (hours.length == 1) hours = "0" + hours;
+    
+    var minutes:string = currentTime.getMinutes().toString();
+    if (minutes.length == 1) minutes = "0" + minutes;
+    
+    const timeString:string = `${hours}:${minutes}`;
     const clock = document.getElementById('clock');
     if (clock === null) return;
     clock.innerHTML = timeString;
