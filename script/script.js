@@ -100,6 +100,7 @@ function displayTime() {
         return;
     clock.innerHTML = timeString;
 }
+displayTime();
 defil();
 setInterval(callBlinkChar, 700);
 setInterval(displayTime, 1000);
