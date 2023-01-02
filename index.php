@@ -7,7 +7,7 @@ if (isset($_POST['submit'])){
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta name = "viewport" content = "width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Start page</title>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/shrek" href="img/favicon.ico">
@@ -15,6 +15,9 @@ if (isset($_POST['submit'])){
 <body>
   <div id="bg-image"></div>
   <main>
+    <div id="clock-container" class="noselect">
+      <span id="clock"></span>
+    </div>
     <form action="index.php" method="POST">
       <label for="search" id="labelsearch" class="noselect"></label>
       <input type="text" id="search" name="search" autofocus autocomplete="off" spellcheck="false">

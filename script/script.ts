@@ -30,5 +30,16 @@ async function callBlinkChar(){
     blinkChar();
 }
 
+function displayTime(){
+    const currentTime = new Date();
+    const hours = currentTime.getHours();
+    const minutes = currentTime.getMinutes();
+    const timeString = `${hours}:${minutes}`;
+    const clock = document.getElementById('clock');
+    if (clock === null) return;
+    clock.innerHTML = timeString;
+}
+
 defil();
 setInterval(callBlinkChar, 700);
+setInterval(displayTime, 1000);

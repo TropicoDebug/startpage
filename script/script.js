@@ -90,5 +90,16 @@ function callBlinkChar() {
         });
     });
 }
+function displayTime() {
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var timeString = "".concat(hours, ":").concat(minutes);
+    var clock = document.getElementById('clock');
+    if (clock === null)
+        return;
+    clock.innerHTML = timeString;
+}
 defil();
 setInterval(callBlinkChar, 700);
+setInterval(displayTime, 1000);
