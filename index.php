@@ -39,6 +39,9 @@ if (isset($_POST['submit'])){
       <div class="link-container">
         <a href="https://chat.openai.com/chat" class="noselect">chatgpt</a>
       </div>
+      <div class="link-container">
+        <a href="https://speedtest.net" class="noselect">speedtest</a>
+      </div>
     </div>
   </main>
 <script type="text/javascript" src="script.js"></script>
