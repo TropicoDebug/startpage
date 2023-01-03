@@ -15,8 +15,11 @@ if (isset($_POST['submit'])){
 <body>
   <div id="bg-image"></div>
   <main>
-    <div id="clock-container" class="noselect">
+    <div id="top-container" class="noselect">
       <span id="clock"></span>
+      <button id="settings-button" tabindex=-1>
+        <img src="img/settings.png" id="settings-img">
+      </button>
     </div>
     <form action="index.php" method="POST">
       <label for="search" id="labelsearch" class="noselect"></label>
