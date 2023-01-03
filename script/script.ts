@@ -48,6 +48,9 @@ async function showSettingsMenu(){
     if (settingsImg === null) return;
     if (settingsButton === null) return;
     if (settingsMenu === null) return;
+    if (menuButtons === null) return;
+    if (clockButton === null) return;
+    if (clockDisplayed === null) return;
     if (!menuDisplayed){
         // open menu
         menuDisplayed = true;
@@ -56,6 +59,12 @@ async function showSettingsMenu(){
         settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
         settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
         settingsMenu.style.width = "300px";
+        menuButtons.forEach(menuButton => {
+            var attr:string = '';
+            attr += menuButton.getAttribute('style');
+            if (attr != null) attr += 'display: block;';
+            menuButton.setAttribute('style', attr);
+        });
     } else{
         // close menu
         menuDisplayed = false;
@@ -64,6 +73,12 @@ async function showSettingsMenu(){
         settingsButton.style.backgroundColor = "transparent";
         settingsMenu.style.backgroundColor = "transparent";
         settingsMenu.style.width = "40px";
+        menuButtons.forEach(menuButton => {
+            var attr:string = '';
+            attr += menuButton.getAttribute('style');
+            if (attr != null) attr += 'display: none;';
+            menuButton.setAttribute('style', attr);
+        });
     }
 }
 
@@ -81,18 +96,54 @@ function mouseLeaveSettingsButton(){
     }
 }
 
+function setDisplayClockAtStartup(){
+    if (clockButton === null) return;
+    if (clock === null) return;
+    if (clockDisplayed){
+        // display clock
+        clock.style.display = "inline-block";
+        clockButton.style.filter = "invert(1)";
+    } else{
+        // do not display clock
+        clock.style.display = "none";
+        clockButton.style.filter = "invert(0)";
+    }
+}
+
+function clickClockButton(){
+    if (clockButton === null) return;
+    if (clock === null) return;
+    if (!clockDisplayed){
+        // display clock
+        clock.style.display = "inline-block";
+        clockButton.style.filter = "invert(1)";
+        clockDisplayed = true;
+    } else{
+        // hide clock
+        clock.style.display = "none";
+        clockButton.style.filter = "invert(0)";
+        clockDisplayed = false;
+    }
+}
+
 // variables and constants
 var menuDisplayed:boolean = false;
+var clockDisplayed:boolean = true;
 const settingsImg = document.getElementById('settings-img');
 const settingsButton = document.getElementById('settings-button');
 const settingsMenu = document.getElementById('settings-menu');
+const menuButtons = Array.from(document.getElementsByClassName('menu-button'));
+const clockButton = document.getElementById('clock-button');
+const clock = document.getElementById('clock');
 
 // event listeners
 settingsButton?.addEventListener('click', showSettingsMenu);
 settingsButton?.addEventListener('mouseenter', mouseEnterSettingsButton);
 settingsButton?.addEventListener('mouseleave', mouseLeaveSettingsButton);
+clockButton?.addEventListener('click', clickClockButton);
 
 // main
+setDisplayClockAtStartup();
 displayTime();
 defil();
 setInterval(callBlinkChar, 700);

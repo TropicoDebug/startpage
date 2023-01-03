@@ -117,9 +117,12 @@ main{
   justify-content: space-between;
 }
 
-#clock{
+#clock-container{
   margin-top: 10px;
   margin-left: 18px;
+}
+
+#clock{
   font-family: digital-7;
   font-size: 3rem;
   color:rgba(255, 255, 255, 0.5);
@@ -135,7 +138,6 @@ main{
   border-radius: 20px;
   border: none;
   display: flex;
-  justify-content: end;
 }
 
 #settings-button{
@@ -154,6 +156,26 @@ main{
   width: 80%;
   transition: transform 0.4s;
   opacity: 0.5;
+}
+
+.menu-button{
+  display: none;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.menu-img{
+  opacity: 0.5;
+  margin: 10%;
+  height: 80%;
+  width: 80%;
+  transition: 0.5s;
 }
 
 form{

@@ -113,6 +113,12 @@ function showSettingsMenu() {
                 return [2 /*return*/];
             if (settingsMenu === null)
                 return [2 /*return*/];
+            if (menuButtons === null)
+                return [2 /*return*/];
+            if (clockButton === null)
+                return [2 /*return*/];
+            if (clockDisplayed === null)
+                return [2 /*return*/];
             if (!menuDisplayed) {
                 // open menu
                 menuDisplayed = true;
@@ -121,6 +127,13 @@ function showSettingsMenu() {
                 settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
                 settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
                 settingsMenu.style.width = "300px";
+                menuButtons.forEach(function (menuButton) {
+                    var attr = '';
+                    attr += menuButton.getAttribute('style');
+                    if (attr != null)
+                        attr += 'display: block;';
+                    menuButton.setAttribute('style', attr);
+                });
             }
             else {
                 // close menu
@@ -130,6 +143,13 @@ function showSettingsMenu() {
                 settingsButton.style.backgroundColor = "transparent";
                 settingsMenu.style.backgroundColor = "transparent";
                 settingsMenu.style.width = "40px";
+                menuButtons.forEach(function (menuButton) {
+                    var attr = '';
+                    attr += menuButton.getAttribute('style');
+                    if (attr != null)
+                        attr += 'display: none;';
+                    menuButton.setAttribute('style', attr);
+                });
             }
             return [2 /*return*/];
         });
@@ -149,16 +169,56 @@ function mouseLeaveSettingsButton() {
         settingsImg.style.opacity = "0.5";
     }
 }
+function setDisplayClockAtStartup() {
+    if (clockButton === null)
+        return;
+    if (clock === null)
+        return;
+    if (clockDisplayed) {
+        // display clock
+        clock.style.display = "inline-block";
+        clockButton.style.filter = "invert(1)";
+    }
+    else {
+        // do not display clock
+        clock.style.display = "none";
+        clockButton.style.filter = "invert(0)";
+    }
+}
+function clickClockButton() {
+    if (clockButton === null)
+        return;
+    if (clock === null)
+        return;
+    if (!clockDisplayed) {
+        // display clock
+        clock.style.display = "inline-block";
+        clockButton.style.filter = "invert(1)";
+        clockDisplayed = true;
+    }
+    else {
+        // hide clock
+        clock.style.display = "none";
+        clockButton.style.filter = "invert(0)";
+        clockDisplayed = false;
+    }
+}
 // variables and constants
 var menuDisplayed = false;
+var clockDisplayed = true;
 var settingsImg = document.getElementById('settings-img');
 var settingsButton = document.getElementById('settings-button');
 var settingsMenu = document.getElementById('settings-menu');
+var menuButtons = Array.from(document.getElementsByClassName('menu-button'));
+var clockButton = document.getElementById('clock-button');
+var clock = document.getElementById('clock');
 // event listeners
 settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('click', showSettingsMenu);
 settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
 settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
+clockButton === null || clockButton === void 0 ? void 0 : clockButton.addEventListener('click', clickClockButton);
 // main
+setDisplayClockAtStartup();
 displayTime();
 defil();
 setInterval(callBlinkChar, 700);

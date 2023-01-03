@@ -16,10 +16,15 @@ if (isset($_POST['submit'])){
   <div id="bg-image"></div>
   <main>
     <div id="top-container" class="noselect">
-      <span id="clock"></span>
+      <div id="clock-container">
+        <span id="clock"></span>
+      </div>
       <div id="settings-menu">
         <button id="settings-button" tabindex=-1>
           <img src="img/settings.png" id="settings-img" draggable="false">
+        </button>
+        <button class="menu-button" id="clock-button" tabindex=-1>
+          <img src="img/clock.png" class="menu-img">
         </button>
       </div>
     </div>
