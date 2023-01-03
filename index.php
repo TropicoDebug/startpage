@@ -54,6 +54,7 @@ if (isset($_POST['submit'])){
       </div>
     </footer>
   </main>
+<script>var exports = {};</script>
 <script type="text/javascript" src="script/script.js"></script>
 </body>
 </html>

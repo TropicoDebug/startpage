@@ -34,6 +34,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ')
+            c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0)
+            return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
 function sleep(ms) {
     return new Promise(function (resolve) { return setTimeout(resolve, ms); });
 }
@@ -174,6 +195,15 @@ function setDisplayClockAtStartup() {
         return;
     if (clock === null)
         return;
+    var cookie = getCookie('clockDisplayed');
+    if (cookie) {
+        if (cookie == "true")
+            clockDisplayed = true;
+        else
+            clockDisplayed = false;
+    }
+    else
+        setCookie("clockDisplayed", "true", 7);
     if (clockDisplayed) {
         // display clock
         clock.style.display = "inline-block";
@@ -195,12 +225,14 @@ function clickClockButton() {
         clock.style.display = "inline-block";
         clockButton.style.filter = "invert(1)";
         clockDisplayed = true;
+        setCookie("clockDisplayed", "true", 7);
     }
     else {
         // hide clock
         clock.style.display = "none";
         clockButton.style.filter = "invert(0)";
         clockDisplayed = false;
+        setCookie("clockDisplayed", "false", 7);
     }
 }
 // variables and constants
