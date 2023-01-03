@@ -125,31 +125,35 @@ main{
   color:rgba(255, 255, 255, 0.5);
 }
 
+#settings-menu{
+  transition:300ms;
+  height: 40px;
+  margin-top: 20px;
+  margin-right: 18px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  border: none;
+  display: flex;
+  justify-content: end;
+}
+
 #settings-button{
   padding: 0;
   border: 0;
   background-color: transparent;
-  margin-top: 20px;
-  margin-right: 18px;
   height: 40px;
   width: 40px;
+  border-radius: 50%;
   cursor: pointer;
 }
 
 #settings-img{
-  transform: rotate(0deg);  /* reset the rotation */
-  transition: transform 0.2s;  /* add a transition to make the rotation smooth */
-  height: 100%;
-  width: 100%;
+  margin: 10%;
+  height: 80%;
+  width: 80%;
+  transition: transform 0.4s;
   opacity: 0.5;
-  
-}
-
-#settings-img:hover{
-  transform: rotate(120deg);  /* rotate the image by 45 degrees on hover */
-  transition: transform 0.5s;  /* add a transition to make the rotation smooth */
-  opacity: 1;
-  
 }
 
 form{

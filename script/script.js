@@ -104,6 +104,61 @@ function displayTime() {
         return;
     clock.innerHTML = timeString;
 }
+function showSettingsMenu() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            if (settingsImg === null)
+                return [2 /*return*/];
+            if (settingsButton === null)
+                return [2 /*return*/];
+            if (settingsMenu === null)
+                return [2 /*return*/];
+            if (!menuDisplayed) {
+                // open menu
+                menuDisplayed = true;
+                settingsImg.style.transform = "rotate(120deg)";
+                settingsImg.style.opacity = "1";
+                settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+                settingsMenu.style.width = "300px";
+            }
+            else {
+                // close menu
+                menuDisplayed = false;
+                settingsImg.style.transform = "rotate(0deg)";
+                settingsImg.style.opacity = "0.5";
+                settingsButton.style.backgroundColor = "transparent";
+                settingsMenu.style.backgroundColor = "transparent";
+                settingsMenu.style.width = "40px";
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+function mouseEnterSettingsButton() {
+    if (settingsImg === null)
+        return;
+    if (!menuDisplayed) {
+        settingsImg.style.opacity = "1";
+    }
+}
+function mouseLeaveSettingsButton() {
+    if (settingsImg === null)
+        return;
+    if (!menuDisplayed) {
+        settingsImg.style.opacity = "0.5";
+    }
+}
+// variables and constants
+var menuDisplayed = false;
+var settingsImg = document.getElementById('settings-img');
+var settingsButton = document.getElementById('settings-button');
+var settingsMenu = document.getElementById('settings-menu');
+// event listeners
+settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('click', showSettingsMenu);
+settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
+settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
+// main
 displayTime();
 defil();
 setInterval(callBlinkChar, 700);

@@ -44,6 +44,55 @@ function displayTime(){
     clock.innerHTML = timeString;
 }
 
+async function showSettingsMenu(){
+    if (settingsImg === null) return;
+    if (settingsButton === null) return;
+    if (settingsMenu === null) return;
+    if (!menuDisplayed){
+        // open menu
+        menuDisplayed = true;
+        settingsImg.style.transform = "rotate(120deg)";
+        settingsImg.style.opacity = "1";
+        settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+        settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+        settingsMenu.style.width = "300px";
+    } else{
+        // close menu
+        menuDisplayed = false;
+        settingsImg.style.transform = "rotate(0deg)";
+        settingsImg.style.opacity = "0.5";
+        settingsButton.style.backgroundColor = "transparent";
+        settingsMenu.style.backgroundColor = "transparent";
+        settingsMenu.style.width = "40px";
+    }
+}
+
+function mouseEnterSettingsButton(){
+    if (settingsImg === null) return;
+    if (!menuDisplayed){
+        settingsImg.style.opacity = "1";
+    }
+}
+
+function mouseLeaveSettingsButton(){
+    if (settingsImg === null) return;
+    if (!menuDisplayed){
+        settingsImg.style.opacity = "0.5";
+    }
+}
+
+// variables and constants
+var menuDisplayed:boolean = false;
+const settingsImg = document.getElementById('settings-img');
+const settingsButton = document.getElementById('settings-button');
+const settingsMenu = document.getElementById('settings-menu');
+
+// event listeners
+settingsButton?.addEventListener('click', showSettingsMenu);
+settingsButton?.addEventListener('mouseenter', mouseEnterSettingsButton);
+settingsButton?.addEventListener('mouseleave', mouseLeaveSettingsButton);
+
+// main
 displayTime();
 defil();
 setInterval(callBlinkChar, 700);

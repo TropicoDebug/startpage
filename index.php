@@ -17,9 +17,11 @@ if (isset($_POST['submit'])){
   <main>
     <div id="top-container" class="noselect">
       <span id="clock"></span>
-      <button id="settings-button" tabindex=-1>
-        <img src="img/settings.png" id="settings-img" draggable="false">
-      </button>
+      <div id="settings-menu">
+        <button id="settings-button" tabindex=-1>
+          <img src="img/settings.png" id="settings-img" draggable="false">
+        </button>
+      </div>
     </div>
     <form action="index.php" method="POST">
       <label for="search" id="labelsearch" class="noselect"></label>
