@@ -51,7 +51,7 @@ async function showSettingsMenu(){
     if (!menuDisplayed){
         // open menu
         menuDisplayed = true;
-        settingsImg.style.transform = "rotate(120deg)";
+        settingsImg.style.transform = "rotate(-120deg)";
         settingsImg.style.opacity = "1";
         settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
         settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
