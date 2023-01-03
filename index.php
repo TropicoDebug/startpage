@@ -18,7 +18,7 @@ if (isset($_POST['submit'])){
     <div id="top-container" class="noselect">
       <span id="clock"></span>
       <button id="settings-button" tabindex=-1>
-        <img src="img/settings.png" id="settings-img">
+        <img src="img/settings.png" id="settings-img" draggable="false">
       </button>
     </div>
     <form action="index.php" method="POST">

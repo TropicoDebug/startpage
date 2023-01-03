@@ -141,11 +141,15 @@ main{
   transition: transform 0.2s;  /* add a transition to make the rotation smooth */
   height: 100%;
   width: 100%;
+  opacity: 0.5;
+  
 }
 
 #settings-img:hover{
   transform: rotate(120deg);  /* rotate the image by 45 degrees on hover */
   transition: transform 0.5s;  /* add a transition to make the rotation smooth */
+  opacity: 1;
+  
 }
 
 form{
