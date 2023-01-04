@@ -92,7 +92,6 @@ body{
   align-items: center;
 }
 
-
 #bg-image{
   display: inline-block;
   width: 100%;
@@ -117,7 +116,6 @@ header{
   display: flex;
   justify-content: space-between;
 }
-
 
 #clock-container{
   margin-top: 10px;
@@ -169,7 +167,6 @@ header{
   width: 40px;
   border-radius: 50%;
   cursor: pointer;
-  margin: 0 5px;
 }
 
 .menu-img{

@@ -140,41 +140,88 @@ function showSettingsMenu() {
                 return [2 /*return*/];
             if (clockDisplayed === null)
                 return [2 /*return*/];
-            if (!menuDisplayed) {
-                // open menu
-                menuDisplayed = true;
-                settingsImg.style.transform = "rotate(-120deg)";
-                settingsImg.style.opacity = "1";
-                settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
-                settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-                settingsMenu.style.width = "300px";
-                menuButtons.forEach(function (menuButton) {
-                    // we retreive the old style attribute values of the menu buttons
-                    var attr = '';
-                    attr += menuButton.getAttribute('style');
-                    // then we add the display:block to the old ones
-                    if (attr != null)
-                        attr += 'display: block;';
-                    menuButton.setAttribute('style', attr);
-                });
+            // desktop version
+            if (screenWidth > 550) {
+                if (!menuDisplayed) {
+                    // open menu
+                    menuDisplayed = true;
+                    settingsImg.style.transform = "rotate(-120deg)";
+                    settingsImg.style.opacity = "1";
+                    settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                    settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+                    settingsMenu.style.width = "320px";
+                    settingsMenu.style.height = "40px";
+                    settingsMenu.style.flexWrap = "nowrap";
+                    menuButtons.forEach(function (menuButton) {
+                        // we retreive the old style attribute values of the menu buttons
+                        var attr = '';
+                        attr += menuButton.getAttribute('style');
+                        // then we add the display:block to the old ones
+                        if (attr != null)
+                            attr += 'display: block;';
+                        menuButton.setAttribute('style', attr);
+                    });
+                }
+                else {
+                    // close menu
+                    menuDisplayed = false;
+                    settingsImg.style.transform = "rotate(0deg)";
+                    settingsImg.style.opacity = "0.5";
+                    settingsButton.style.backgroundColor = "transparent";
+                    settingsMenu.style.backgroundColor = "transparent";
+                    settingsMenu.style.width = "40px";
+                    menuButtons.forEach(function (menuButton) {
+                        // we retreive the old style attribute values of the menu buttons
+                        var attr = '';
+                        attr += menuButton.getAttribute('style');
+                        // then we add the display:none value to the old ones
+                        if (attr != null)
+                            attr += 'display: none;';
+                        menuButton.setAttribute('style', attr);
+                    });
+                }
+                // mobile version
             }
             else {
-                // close menu
-                menuDisplayed = false;
-                settingsImg.style.transform = "rotate(0deg)";
-                settingsImg.style.opacity = "0.5";
-                settingsButton.style.backgroundColor = "transparent";
-                settingsMenu.style.backgroundColor = "transparent";
-                settingsMenu.style.width = "40px";
-                menuButtons.forEach(function (menuButton) {
-                    // we retreive the old style attribute values of the menu buttons
-                    var attr = '';
-                    attr += menuButton.getAttribute('style');
-                    // then we add the display:none value to the old ones
-                    if (attr != null)
-                        attr += 'display: none;';
-                    menuButton.setAttribute('style', attr);
-                });
+                if (!menuDisplayed) {
+                    // open menu
+                    menuDisplayed = true;
+                    settingsImg.style.transform = "rotate(-120deg)";
+                    settingsImg.style.opacity = "1";
+                    settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                    settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+                    settingsMenu.style.width = "160px";
+                    settingsMenu.style.height = "80px";
+                    settingsMenu.style.flexWrap = "wrap";
+                    menuButtons.forEach(function (menuButton) {
+                        // we retreive the old style attribute values of the menu buttons
+                        var attr = '';
+                        attr += menuButton.getAttribute('style');
+                        // then we add the display:block to the old ones
+                        if (attr != null)
+                            attr += 'display: block;';
+                        menuButton.setAttribute('style', attr);
+                    });
+                }
+                else {
+                    // close menu
+                    menuDisplayed = false;
+                    settingsImg.style.transform = "rotate(0deg)";
+                    settingsImg.style.opacity = "0.5";
+                    settingsButton.style.backgroundColor = "transparent";
+                    settingsMenu.style.backgroundColor = "transparent";
+                    settingsMenu.style.width = "40px";
+                    settingsMenu.style.height = "40px";
+                    menuButtons.forEach(function (menuButton) {
+                        // we retreive the old style attribute values of the menu buttons
+                        var attr = '';
+                        attr += menuButton.getAttribute('style');
+                        // then we add the display:none value to the old ones
+                        if (attr != null)
+                            attr += 'display: none;';
+                        menuButton.setAttribute('style', attr);
+                    });
+                }
             }
             return [2 /*return*/];
         });
@@ -265,6 +312,7 @@ function clickFooter() {
 // variables and constants
 var menuDisplayed = false;
 var clockDisplayed = true;
+var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var settingsImg = document.getElementById('settings-img');
 var settingsButton = document.getElementById('settings-button');
 var settingsMenu = document.getElementById('settings-menu');
