@@ -65,19 +65,6 @@ table {
   user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
-html{
-  height: 100%;
-}
-
-body{
-  color: white;
-  font-family: 'Comfortaa';
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 ::selection{
   background: white;
   color: black;
@@ -92,6 +79,20 @@ a:hover{
   color: grey;
 }
 
+html{
+  height: 100%;
+}
+
+body{
+  color: white;
+  font-family: 'Comfortaa';
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 #bg-image{
   display: inline-block;
   width: 100%;
@@ -102,7 +103,7 @@ a:hover{
   background-size: cover;
 }
 
-main{
+#real-body{
   height: 100%;
   width: 100%;
   position: absolute;
@@ -111,11 +112,12 @@ main{
   align-items: center;
 }
 
-#top-container{
-  display: flex;
+header{
   width: 100%;
+  display: flex;
   justify-content: space-between;
 }
+
 
 #clock-container{
   margin-top: 10px;
@@ -178,6 +180,14 @@ main{
   transition: 0.5s;
 }
 
+main{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 form{
   margin: auto;
   display: flex;
@@ -212,20 +222,20 @@ input[id=search]:hover{
   display: none;
 }
 
-#bottom-container{
+footer{
+  width: 100%;
   display: flex;
-  margin-bottom: 20px;
-  text-align: center;
+  justify-content: center;
 }
 
 .link-container{
-  margin: 0 10px;
+  margin: 0 10px 20px;
 }
 
-
 @media only screen and (max-width: 550px) {
-  #bottom-container{
+  footer{
     flex-direction: column;
+    align-items: center;
   }
 
   .link-container{

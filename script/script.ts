@@ -168,21 +168,45 @@ function cookieRenewRoulette(){
     if (Math.floor(Math.random() * 10) == 0) setCookie("clockDisplayed", clockDisplayed.toString(), 7);
 }
 
+function clickMain(){
+    if (menuDisplayed){
+        // close the settings menu
+        showSettingsMenu();
+    }
+}
+
+function clickFooter(){
+    if (menuDisplayed){
+        // close the settings menu
+        showSettingsMenu();
+    }
+}
+
+
 // variables and constants
 var menuDisplayed:boolean = false;
 var clockDisplayed:boolean = true;
+
 const settingsImg = document.getElementById('settings-img');
 const settingsButton = document.getElementById('settings-button');
 const settingsMenu = document.getElementById('settings-menu');
 const menuButtons = Array.from(document.getElementsByClassName('menu-button'));
+
 const clockButton = document.getElementById('clock-button');
 const clock = document.getElementById('clock');
+
+const main = document.getElementById('main');
+const footer = document.getElementById('footer');
+
 
 // event listeners
 settingsButton?.addEventListener('click', showSettingsMenu);
 settingsButton?.addEventListener('mouseenter', mouseEnterSettingsButton);
 settingsButton?.addEventListener('mouseleave', mouseLeaveSettingsButton);
 clockButton?.addEventListener('click', clickClockButton);
+main?.addEventListener('click', clickMain);
+footer?.addEventListener('click', clickFooter);
+
 
 // main
 setDisplayClockAtStartup();

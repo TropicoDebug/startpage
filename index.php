@@ -14,8 +14,8 @@ if (isset($_POST['submit'])){
 </head>
 <body>
   <div id="bg-image"></div>
-  <main>
-    <div id="top-container" class="noselect">
+  <div id="real-body">
+    <header id="header" class="noselect">
       <div id="clock-container">
         <span id="clock"></span>
       </div>
@@ -27,13 +27,15 @@ if (isset($_POST['submit'])){
           <img src="img/clock.png" class="menu-img" draggable="false">
         </button>
       </div>
-    </div>
-    <form action="index.php" method="POST">
-      <label for="search" id="labelsearch" class="noselect"></label>
-      <input type="text" id="search" name="search" autofocus autocomplete="off" spellcheck="false">
-      <input id="submit" type="submit" value="Submit" name="submit">
-    </form> 
-    <div id="bottom-container">
+    </header>
+    <main id="main" class="noselect">
+      <form action="index.php" method="POST">
+        <label for="search" id="labelsearch" class="noselect"></label>
+        <input type="text" id="search" name="search" autofocus autocomplete="off" spellcheck="false">
+        <input id="submit" type="submit" value="Submit" name="submit">
+      </form>
+    </main>
+    <footer id="footer" class="noselect">
       <div class="link-container">
         <a href="https://www.github.com" class="noselect">github</a>
       </div>
@@ -52,8 +54,8 @@ if (isset($_POST['submit'])){
       <div class="link-container">
         <a href="https://speedtest.net" class="noselect">speedtest</a>
       </div>
-    </div>
-  </main>
+    </footer>
+  </div>
 <script>var exports = {};</script>
 <script type="text/javascript" src="script/script.js"></script>
 </body>

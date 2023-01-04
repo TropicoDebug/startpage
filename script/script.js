@@ -250,6 +250,18 @@ function cookieRenewRoulette() {
     if (Math.floor(Math.random() * 10) == 0)
         setCookie("clockDisplayed", clockDisplayed.toString(), 7);
 }
+function clickMain() {
+    if (menuDisplayed) {
+        // close the settings menu
+        showSettingsMenu();
+    }
+}
+function clickFooter() {
+    if (menuDisplayed) {
+        // close the settings menu
+        showSettingsMenu();
+    }
+}
 // variables and constants
 var menuDisplayed = false;
 var clockDisplayed = true;
@@ -259,11 +271,15 @@ var settingsMenu = document.getElementById('settings-menu');
 var menuButtons = Array.from(document.getElementsByClassName('menu-button'));
 var clockButton = document.getElementById('clock-button');
 var clock = document.getElementById('clock');
+var main = document.getElementById('main');
+var footer = document.getElementById('footer');
 // event listeners
 settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('click', showSettingsMenu);
 settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
 settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
 clockButton === null || clockButton === void 0 ? void 0 : clockButton.addEventListener('click', clickClockButton);
+main === null || main === void 0 ? void 0 : main.addEventListener('click', clickMain);
+footer === null || footer === void 0 ? void 0 : footer.addEventListener('click', clickFooter);
 // main
 setDisplayClockAtStartup();
 displayTime();
