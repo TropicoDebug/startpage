@@ -81,7 +81,7 @@ async function showSettingsMenu(){
             settingsImg.style.opacity = "1";
             settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
             settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-            settingsMenu.style.width = "320px";
+            settingsMenu.style.width = "240px";
             settingsMenu.style.height = "40px";
             settingsMenu.style.flexWrap = "nowrap";
             menuButtons.forEach(menuButton => {
@@ -118,7 +118,7 @@ async function showSettingsMenu(){
             settingsImg.style.opacity = "1";
             settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
             settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-            settingsMenu.style.width = "160px";
+            settingsMenu.style.width = "120px";
             settingsMenu.style.height = "80px";
             settingsMenu.style.flexWrap = "wrap";
             menuButtons.forEach(menuButton => {
