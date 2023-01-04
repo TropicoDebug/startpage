@@ -81,8 +81,10 @@ async function showSettingsMenu(){
         settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
         settingsMenu.style.width = "300px";
         menuButtons.forEach(menuButton => {
+            // we retreive the old style attribute values of the menu buttons
             var attr:string = '';
             attr += menuButton.getAttribute('style');
+            // then we add the display:block to the old ones
             if (attr != null) attr += 'display: block;';
             menuButton.setAttribute('style', attr);
         });
@@ -95,8 +97,10 @@ async function showSettingsMenu(){
         settingsMenu.style.backgroundColor = "transparent";
         settingsMenu.style.width = "40px";
         menuButtons.forEach(menuButton => {
+            // we retreive the old style attribute values of the menu buttons
             var attr:string = '';
             attr += menuButton.getAttribute('style');
+            // then we add the display:none value to the old ones
             if (attr != null) attr += 'display: none;';
             menuButton.setAttribute('style', attr);
         });
@@ -121,10 +125,14 @@ function setDisplayClockAtStartup(){
     if (clockButton === null) return;
     if (clock === null) return;
     var cookie = getCookie('clockDisplayed');
+    // if the cookie already exist we set clockDisplayed with the right value
     if (cookie){
         if (cookie == "true") clockDisplayed = true;
         else clockDisplayed = false;
-    } else setCookie("clockDisplayed", "true", 7)
+        // we may or may not renew the cookie
+        cookieRenewRoulette();
+    // if the cookie doesn't exist we create it
+    } else setCookie("clockDisplayed", "true", 7);
     if (clockDisplayed){
         // display clock
         clock.style.display = "inline-block";
@@ -154,6 +162,12 @@ function clickClockButton(){
     }
 }
 
+function cookieRenewRoulette(){
+    if (clockDisplayed === null) return;
+    // if you are lucky enough your cookie get renewed for another week!
+    if (Math.floor(Math.random() * 10) == 0) setCookie("clockDisplayed", clockDisplayed.toString(), 7);
+}
+
 // variables and constants
 var menuDisplayed:boolean = false;
 var clockDisplayed:boolean = true;
@@ -173,6 +187,9 @@ clockButton?.addEventListener('click', clickClockButton);
 // main
 setDisplayClockAtStartup();
 displayTime();
+// this call the appearing sentence animation
 defil();
+// this animate the question mark
 setInterval(callBlinkChar, 700);
+// this update the clock
 setInterval(displayTime, 1000);
