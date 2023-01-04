@@ -24,7 +24,7 @@ if (isset($_POST['submit'])){
           <img src="img/settings.png" id="settings-img" draggable="false">
         </button>
         <button class="menu-button" id="clock-button" tabindex=-1>
-          <img src="img/clock.png" class="menu-img">
+          <img src="img/clock.png" class="menu-img" draggable="false">
         </button>
       </div>
     </div>
