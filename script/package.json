@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@types/node": "^18.11.18",
-    "typescript-cookie": "^1.0.4"
+    "@types/node": "^18.11.18"
   }
 }

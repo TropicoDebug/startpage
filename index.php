@@ -33,7 +33,7 @@ if (isset($_POST['submit'])){
       <input type="text" id="search" name="search" autofocus autocomplete="off" spellcheck="false">
       <input id="submit" type="submit" value="Submit" name="submit">
     </form> 
-    <footer id="bottom-container">
+    <div id="bottom-container">
       <div class="link-container">
         <a href="https://www.github.com" class="noselect">github</a>
       </div>
@@ -52,7 +52,7 @@ if (isset($_POST['submit'])){
       <div class="link-container">
         <a href="https://speedtest.net" class="noselect">speedtest</a>
       </div>
-    </footer>
+    </div>
   </main>
 <script>var exports = {};</script>
 <script type="text/javascript" src="script/script.js"></script>
