@@ -26,6 +26,9 @@ if (isset($_POST['submit'])){
         <button class="menu-button" id="clock-button" tabindex=-1>
           <img src="img/clock.png" class="menu-img" draggable="false">
         </button>
+        <button class="menu-button" id="link-button" tabindex=-1>
+          <img src="img/link.png" class="menu-img" draggable="false">
+        </button>
       </div>
     </header>
     <main id="main" class="noselect">

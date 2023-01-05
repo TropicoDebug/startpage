@@ -66,12 +66,6 @@ function displayTime(){
 }
 
 async function showSettingsMenu(){
-    if (settingsImg === null) return;
-    if (settingsButton === null) return;
-    if (settingsMenu === null) return;
-    if (menuButtons === null) return;
-    if (clockButton === null) return;
-    if (clockDisplayed === null) return;
     // desktop version
     if (screenWidth > 550){
         if (!menuDisplayed){
@@ -83,13 +77,13 @@ async function showSettingsMenu(){
             settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
             settingsMenu.style.width = "240px";
             settingsMenu.style.height = "40px";
-            settingsMenu.style.flexWrap = "nowrap";
             menuButtons.forEach(menuButton => {
-                // we retreive the old style attribute values of the menu buttons
-                var attr:string = '';
-                attr += menuButton.getAttribute('style');
-                // then we add the display:block to the old ones
-                if (attr != null) attr += 'display: block;';
+                // we check if the filter is at 0 or 1 so we only keep the filter value
+                if (menuButton.getAttribute('style')?.includes('0')) var attr:string = "filter: invert(0);"
+                else if (menuButton.getAttribute('style')?.includes('1')) var attr:string = "filter: invert(1);"
+                else var attr:string = "";
+                // then we add the display:block value
+                attr += "display: block;";
                 menuButton.setAttribute('style', attr);
             });
         } else{
@@ -101,11 +95,12 @@ async function showSettingsMenu(){
             settingsMenu.style.backgroundColor = "transparent";
             settingsMenu.style.width = "40px";
             menuButtons.forEach(menuButton => {
-                // we retreive the old style attribute values of the menu buttons
-                var attr:string = '';
-                attr += menuButton.getAttribute('style');
-                // then we add the display:none value to the old ones
-                if (attr != null) attr += 'display: none;';
+                // we check if the filter is at 0 or 1 so we only keep the filter value
+                if (menuButton.getAttribute('style')?.includes('0')) var attr:string = "filter: invert(0);"
+                else if (menuButton.getAttribute('style')?.includes('1')) var attr:string = "filter: invert(1);"
+                else var attr:string = "";
+                // then we add the display:none value
+                attr += "display: none;";
                 menuButton.setAttribute('style', attr);
             });
         }
@@ -120,13 +115,13 @@ async function showSettingsMenu(){
             settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
             settingsMenu.style.width = "120px";
             settingsMenu.style.height = "80px";
-            settingsMenu.style.flexWrap = "wrap";
             menuButtons.forEach(menuButton => {
-                // we retreive the old style attribute values of the menu buttons
-                var attr:string = '';
-                attr += menuButton.getAttribute('style');
-                // then we add the display:block to the old ones
-                if (attr != null) attr += 'display: block;';
+                // we check if the filter is at 0 or 1 so we only keep the filter value
+                if (menuButton.getAttribute('style')?.includes('0')) var attr:string = "filter: invert(0);"
+                else if (menuButton.getAttribute('style')?.includes('1')) var attr:string = "filter: invert(1);"
+                else var attr:string = "";
+                // then we add the display:block value
+                attr += "display: block;";
                 menuButton.setAttribute('style', attr);
             });
         } else{
@@ -139,11 +134,12 @@ async function showSettingsMenu(){
             settingsMenu.style.width = "40px";
             settingsMenu.style.height = "40px";
             menuButtons.forEach(menuButton => {
-                // we retreive the old style attribute values of the menu buttons
-                var attr:string = '';
-                attr += menuButton.getAttribute('style');
-                // then we add the display:none value to the old ones
-                if (attr != null) attr += 'display: none;';
+                // we check if the filter is at 0 or 1 so we only keep the filter value
+                if (menuButton.getAttribute('style')?.includes('0')) var attr:string = "filter: invert(0);"
+                else if (menuButton.getAttribute('style')?.includes('1')) var attr:string = "filter: invert(1);"
+                else var attr:string = "";
+                // then we add the display:none value
+                attr += "display: none;";
                 menuButton.setAttribute('style', attr);
             });
         }
@@ -151,22 +147,18 @@ async function showSettingsMenu(){
 }
 
 function mouseEnterSettingsButton(){
-    if (settingsImg === null) return;
     if (!menuDisplayed){
         settingsImg.style.opacity = "1";
     }
 }
 
 function mouseLeaveSettingsButton(){
-    if (settingsImg === null) return;
     if (!menuDisplayed){
         settingsImg.style.opacity = "0.5";
     }
 }
 
 function setDisplayClockAtStartup(){
-    if (clockButton === null) return;
-    if (clock === null) return;
     var cookie = getCookie('clockDisplayed');
     // if the cookie already exist we set clockDisplayed with the right value
     if (cookie){
@@ -188,8 +180,6 @@ function setDisplayClockAtStartup(){
 }
 
 function clickClockButton(){
-    if (clockButton === null) return;
-    if (clock === null) return;
     if (!clockDisplayed){
         // display clock
         clock.style.display = "inline-block";
@@ -206,7 +196,6 @@ function clickClockButton(){
 }
 
 function cookieRenewRoulette(){
-    if (clockDisplayed === null) return;
     // if you are lucky enough your cookie get renewed for another week!
     if (Math.floor(Math.random() * 10) == 0) setCookie("clockDisplayed", clockDisplayed.toString(), 7);
 }
@@ -232,16 +221,16 @@ var clockDisplayed:boolean = true;
 
 var screenWidth:number = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 
-const settingsImg = document.getElementById('settings-img');
-const settingsButton = document.getElementById('settings-button');
-const settingsMenu = document.getElementById('settings-menu');
-const menuButtons = Array.from(document.getElementsByClassName('menu-button'));
+const settingsImg:HTMLElement = document.getElementById('settings-img')!;
+const settingsButton:HTMLElement = document.getElementById('settings-button')!;
+const settingsMenu:HTMLElement = document.getElementById('settings-menu')!;
+const menuButtons = Array.from(document.getElementsByClassName('menu-button'))!;
 
-const clockButton = document.getElementById('clock-button');
-const clock = document.getElementById('clock');
+const clockButton:HTMLElement = document.getElementById('clock-button')!;
+const clock:HTMLElement = document.getElementById('clock')!;
 
-const main = document.getElementById('main');
-const footer = document.getElementById('footer');
+const main:HTMLElement = document.getElementById('main')!;
+const footer:HTMLElement = document.getElementById('footer')!;
 
 
 // event listeners
