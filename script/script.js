@@ -207,12 +207,9 @@ function setDisplayClockAtStartup() {
             clockDisplayed = true;
         else
             clockDisplayed = false;
-        // we may or may not renew the cookie
-        cookieRenewRoulette();
-        // if the cookie doesn't exist we create it
     }
-    else
-        setCookie("clockDisplayed", "true", 7);
+    // we renew/create the cookie
+    setClockCookie();
     if (clockDisplayed) {
         // display clock
         clock.style.display = "inline-block";
@@ -230,20 +227,18 @@ function clickClockButton() {
         clock.style.display = "inline-block";
         clockButton.style.filter = "invert(1)";
         clockDisplayed = true;
-        setCookie("clockDisplayed", "true", 7);
+        setClockCookie();
     }
     else {
         // hide clock
         clock.style.display = "none";
         clockButton.style.filter = "invert(0)";
         clockDisplayed = false;
-        setCookie("clockDisplayed", "false", 7);
+        setClockCookie();
     }
 }
-function cookieRenewRoulette() {
-    // if you are lucky enough your cookie get renewed for another week!
-    if (Math.floor(Math.random() * 10) == 0)
-        setCookie("clockDisplayed", clockDisplayed.toString(), 7);
+function setClockCookie() {
+    setCookie("clockDisplayed", clockDisplayed.toString(), 7);
 }
 function clickMain() {
     if (menuDisplayed) {
@@ -257,9 +252,64 @@ function clickFooter() {
         clickSettingsButton();
     }
 }
+function clickLinkButton() {
+    if (!linksDisplayed) {
+        // display links
+        linkContainers.forEach(function (linkContainer) {
+            linkContainer.style.display = "block";
+        });
+        linkButton.style.filter = "invert(1)";
+        linksDisplayed = true;
+        setLinksCookie();
+    }
+    else {
+        // hide links
+        linkContainers.forEach(function (linkContainer) {
+            linkContainer.style.display = "none";
+        });
+        linkButton.style.filter = "invert(0)";
+        linksDisplayed = false;
+        setLinksCookie();
+    }
+}
+function mouseEnterLinkButton() {
+}
+function mouseLeaveLinkButton() {
+}
+function setLinksDisplayedAtStartup() {
+    var cookie = getCookie('linksDisplayed');
+    // if the cookie already exist we set linksDisplayed with the right value
+    if (cookie) {
+        if (cookie == "true")
+            linksDisplayed = true;
+        else
+            linksDisplayed = false;
+    }
+    // we renew/create the cookie
+    setLinksCookie();
+    if (linksDisplayed) {
+        // display links
+        linkContainers.forEach(function (linkContainer) {
+            linkContainer.style.display = "block";
+        });
+        linkButton.style.filter = "invert(1)";
+    }
+    else {
+        // do not display links
+        linkContainers.forEach(function (linkContainer) {
+            linkContainer.style.display = "none";
+        });
+        linkButton.style.filter = "invert(0)";
+    }
+}
+function setLinksCookie() {
+    setCookie("linksDisplayed", linksDisplayed.toString(), 7);
+}
 // variables and constants
 var menuDisplayed = false;
 var clockDisplayed = true;
+var linkMenuDisplayed = false;
+var linksDisplayed = true;
 var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var settingsImg = document.getElementById('settings-img');
 var settingsButton = document.getElementById('settings-button');
@@ -267,6 +317,8 @@ var settingsMenu = document.getElementById('settings-menu');
 var menuButtons = Array.from(document.getElementsByClassName('menu-button'));
 var clockButton = document.getElementById('clock-button');
 var clock = document.getElementById('clock');
+var linkButton = document.getElementById('link-button');
+var linkContainers = Array.from(document.getElementsByClassName('link-container'));
 var main = document.getElementById('main');
 var footer = document.getElementById('footer');
 // event listeners
@@ -274,10 +326,12 @@ settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.a
 settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
 settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
 clockButton === null || clockButton === void 0 ? void 0 : clockButton.addEventListener('click', clickClockButton);
+linkButton === null || linkButton === void 0 ? void 0 : linkButton.addEventListener('click', clickLinkButton);
 main === null || main === void 0 ? void 0 : main.addEventListener('click', clickMain);
 footer === null || footer === void 0 ? void 0 : footer.addEventListener('click', clickFooter);
 // main
 setDisplayClockAtStartup();
+setLinksDisplayedAtStartup();
 displayTime();
 // this call the appearing sentence animation
 defil();

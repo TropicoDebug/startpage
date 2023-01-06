@@ -222,11 +222,13 @@ input[id=search]:hover{
 
 footer{
   width: 100%;
+  height: 40px;
   display: flex;
   justify-content: center;
 }
 
 .link-container{
+  display: none;
   margin: 0 10px 20px;
 }
 

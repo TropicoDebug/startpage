@@ -140,10 +140,9 @@ function setDisplayClockAtStartup(){
     if (cookie){
         if (cookie == "true") clockDisplayed = true;
         else clockDisplayed = false;
-        // we may or may not renew the cookie
-        cookieRenewRoulette();
-    // if the cookie doesn't exist we create it
-    } else setCookie("clockDisplayed", "true", 7);
+    }
+    // we renew/create the cookie
+    setClockCookie();
     if (clockDisplayed){
         // display clock
         clock.style.display = "inline-block";
@@ -161,19 +160,18 @@ function clickClockButton(){
         clock.style.display = "inline-block";
         clockButton.style.filter = "invert(1)";
         clockDisplayed = true;
-        setCookie("clockDisplayed", "true", 7)
+        setClockCookie();
     } else{
         // hide clock
         clock.style.display = "none";
         clockButton.style.filter = "invert(0)";
         clockDisplayed = false;
-        setCookie("clockDisplayed", "false", 7)
+        setClockCookie();
     }
 }
 
-function cookieRenewRoulette(){
-    // if you are lucky enough your cookie get renewed for another week!
-    if (Math.floor(Math.random() * 10) == 0) setCookie("clockDisplayed", clockDisplayed.toString(), 7);
+function setClockCookie(){
+    setCookie("clockDisplayed", clockDisplayed.toString(), 7);
 }
 
 function clickMain(){
@@ -190,10 +188,67 @@ function clickFooter(){
     }
 }
 
+function clickLinkButton(){
+    if (!linksDisplayed){
+        // display links
+        linkContainers.forEach(linkContainer => {
+            linkContainer.style.display = "block";
+        });
+        linkButton.style.filter = "invert(1)";
+        linksDisplayed = true;
+        setLinksCookie();
+    } else{
+        // hide links
+        linkContainers.forEach(linkContainer => {
+            linkContainer.style.display = "none";
+        });
+        linkButton.style.filter = "invert(0)";
+        linksDisplayed = false;
+        setLinksCookie();
+    }
+}
+
+function mouseEnterLinkButton(){
+
+}
+
+function mouseLeaveLinkButton(){
+
+}
+
+function setLinksDisplayedAtStartup(){
+    var cookie = getCookie('linksDisplayed');
+    // if the cookie already exist we set linksDisplayed with the right value
+    if (cookie){
+        if (cookie == "true") linksDisplayed = true;
+        else linksDisplayed = false;
+    }
+    // we renew/create the cookie
+    setLinksCookie();
+    if (linksDisplayed){
+        // display links
+        linkContainers.forEach(linkContainer => {
+            linkContainer.style.display = "block";
+        });
+        linkButton.style.filter = "invert(1)";
+    } else{
+        // do not display links
+        linkContainers.forEach(linkContainer => {
+            linkContainer.style.display = "none";
+        });
+        linkButton.style.filter = "invert(0)";
+    }
+}
+
+function setLinksCookie(){
+    setCookie("linksDisplayed", linksDisplayed.toString(), 7);
+}
 
 // variables and constants
 var menuDisplayed:boolean = false;
 var clockDisplayed:boolean = true;
+var linkMenuDisplayed:boolean = false;
+var linksDisplayed:boolean = true;
 
 var screenWidth:number = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 
@@ -204,6 +259,8 @@ const menuButtons = Array.from(document.getElementsByClassName('menu-button') as
 
 const clockButton:HTMLElement = document.getElementById('clock-button')!;
 const clock:HTMLElement = document.getElementById('clock')!;
+const linkButton:HTMLElement = document.getElementById('link-button')!;
+const linkContainers = Array.from(document.getElementsByClassName('link-container') as HTMLCollectionOf<HTMLElement>);
 
 const main:HTMLElement = document.getElementById('main')!;
 const footer:HTMLElement = document.getElementById('footer')!;
@@ -213,13 +270,17 @@ const footer:HTMLElement = document.getElementById('footer')!;
 settingsButton?.addEventListener('click', clickSettingsButton);
 settingsButton?.addEventListener('mouseenter', mouseEnterSettingsButton);
 settingsButton?.addEventListener('mouseleave', mouseLeaveSettingsButton);
+
 clockButton?.addEventListener('click', clickClockButton);
+linkButton?.addEventListener('click', clickLinkButton);
+
 main?.addEventListener('click', clickMain);
 footer?.addEventListener('click', clickFooter);
 
 
 // main
 setDisplayClockAtStartup();
+setLinksDisplayedAtStartup();
 displayTime();
 // this call the appearing sentence animation
 defil();
