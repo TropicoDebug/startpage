@@ -65,7 +65,7 @@ function displayTime(){
     clock.innerHTML = timeString;
 }
 
-async function showSettingsMenu(){
+async function clickSettingsButton(){
     // desktop version
     if (screenWidth > 550){
         if (!menuDisplayed){
@@ -78,13 +78,7 @@ async function showSettingsMenu(){
             settingsMenu.style.width = "240px";
             settingsMenu.style.height = "40px";
             menuButtons.forEach(menuButton => {
-                // we check if the filter is at 0 or 1 so we only keep the filter value
-                if (menuButton.getAttribute('style')?.includes('0')) var attr:string = "filter: invert(0);"
-                else if (menuButton.getAttribute('style')?.includes('1')) var attr:string = "filter: invert(1);"
-                else var attr:string = "";
-                // then we add the display:block value
-                attr += "display: block;";
-                menuButton.setAttribute('style', attr);
+                menuButton.style.display = "block";
             });
         } else{
             // close menu
@@ -95,13 +89,7 @@ async function showSettingsMenu(){
             settingsMenu.style.backgroundColor = "transparent";
             settingsMenu.style.width = "40px";
             menuButtons.forEach(menuButton => {
-                // we check if the filter is at 0 or 1 so we only keep the filter value
-                if (menuButton.getAttribute('style')?.includes('0')) var attr:string = "filter: invert(0);"
-                else if (menuButton.getAttribute('style')?.includes('1')) var attr:string = "filter: invert(1);"
-                else var attr:string = "";
-                // then we add the display:none value
-                attr += "display: none;";
-                menuButton.setAttribute('style', attr);
+                menuButton.style.display = "none";
             });
         }
     // mobile version
@@ -116,13 +104,7 @@ async function showSettingsMenu(){
             settingsMenu.style.width = "120px";
             settingsMenu.style.height = "80px";
             menuButtons.forEach(menuButton => {
-                // we check if the filter is at 0 or 1 so we only keep the filter value
-                if (menuButton.getAttribute('style')?.includes('0')) var attr:string = "filter: invert(0);"
-                else if (menuButton.getAttribute('style')?.includes('1')) var attr:string = "filter: invert(1);"
-                else var attr:string = "";
-                // then we add the display:block value
-                attr += "display: block;";
-                menuButton.setAttribute('style', attr);
+                menuButton.style.display = "block";
             });
         } else{
             // close menu
@@ -134,13 +116,7 @@ async function showSettingsMenu(){
             settingsMenu.style.width = "40px";
             settingsMenu.style.height = "40px";
             menuButtons.forEach(menuButton => {
-                // we check if the filter is at 0 or 1 so we only keep the filter value
-                if (menuButton.getAttribute('style')?.includes('0')) var attr:string = "filter: invert(0);"
-                else if (menuButton.getAttribute('style')?.includes('1')) var attr:string = "filter: invert(1);"
-                else var attr:string = "";
-                // then we add the display:none value
-                attr += "display: none;";
-                menuButton.setAttribute('style', attr);
+                menuButton.style.display = "none";
             });
         }
     }
@@ -203,14 +179,14 @@ function cookieRenewRoulette(){
 function clickMain(){
     if (menuDisplayed){
         // close the settings menu
-        showSettingsMenu();
+        clickSettingsButton();
     }
 }
 
 function clickFooter(){
     if (menuDisplayed){
         // close the settings menu
-        showSettingsMenu();
+        clickSettingsButton();
     }
 }
 
@@ -224,7 +200,7 @@ var screenWidth:number = (window.innerWidth > 0) ? window.innerWidth : screen.wi
 const settingsImg:HTMLElement = document.getElementById('settings-img')!;
 const settingsButton:HTMLElement = document.getElementById('settings-button')!;
 const settingsMenu:HTMLElement = document.getElementById('settings-menu')!;
-const menuButtons = Array.from(document.getElementsByClassName('menu-button'))!;
+const menuButtons = Array.from(document.getElementsByClassName('menu-button') as HTMLCollectionOf<HTMLElement>);
 
 const clockButton:HTMLElement = document.getElementById('clock-button')!;
 const clock:HTMLElement = document.getElementById('clock')!;
@@ -234,7 +210,7 @@ const footer:HTMLElement = document.getElementById('footer')!;
 
 
 // event listeners
-settingsButton?.addEventListener('click', showSettingsMenu);
+settingsButton?.addEventListener('click', clickSettingsButton);
 settingsButton?.addEventListener('mouseenter', mouseEnterSettingsButton);
 settingsButton?.addEventListener('mouseleave', mouseLeaveSettingsButton);
 clockButton?.addEventListener('click', clickClockButton);

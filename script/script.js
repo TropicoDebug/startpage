@@ -125,7 +125,7 @@ function displayTime() {
         return;
     clock.innerHTML = timeString;
 }
-function showSettingsMenu() {
+function clickSettingsButton() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             // desktop version
@@ -140,17 +140,7 @@ function showSettingsMenu() {
                     settingsMenu.style.width = "240px";
                     settingsMenu.style.height = "40px";
                     menuButtons.forEach(function (menuButton) {
-                        var _a, _b;
-                        // we check if the filter is at 0 or 1 so we only keep the filter value
-                        if ((_a = menuButton.getAttribute('style')) === null || _a === void 0 ? void 0 : _a.includes('0'))
-                            var attr = "filter: invert(0);";
-                        else if ((_b = menuButton.getAttribute('style')) === null || _b === void 0 ? void 0 : _b.includes('1'))
-                            var attr = "filter: invert(1);";
-                        else
-                            var attr = "";
-                        // then we add the display:block value
-                        attr += "display: block;";
-                        menuButton.setAttribute('style', attr);
+                        menuButton.style.display = "block";
                     });
                 }
                 else {
@@ -162,17 +152,7 @@ function showSettingsMenu() {
                     settingsMenu.style.backgroundColor = "transparent";
                     settingsMenu.style.width = "40px";
                     menuButtons.forEach(function (menuButton) {
-                        var _a, _b;
-                        // we check if the filter is at 0 or 1 so we only keep the filter value
-                        if ((_a = menuButton.getAttribute('style')) === null || _a === void 0 ? void 0 : _a.includes('0'))
-                            var attr = "filter: invert(0);";
-                        else if ((_b = menuButton.getAttribute('style')) === null || _b === void 0 ? void 0 : _b.includes('1'))
-                            var attr = "filter: invert(1);";
-                        else
-                            var attr = "";
-                        // then we add the display:none value
-                        attr += "display: none;";
-                        menuButton.setAttribute('style', attr);
+                        menuButton.style.display = "none";
                     });
                 }
                 // mobile version
@@ -188,17 +168,7 @@ function showSettingsMenu() {
                     settingsMenu.style.width = "120px";
                     settingsMenu.style.height = "80px";
                     menuButtons.forEach(function (menuButton) {
-                        var _a, _b;
-                        // we check if the filter is at 0 or 1 so we only keep the filter value
-                        if ((_a = menuButton.getAttribute('style')) === null || _a === void 0 ? void 0 : _a.includes('0'))
-                            var attr = "filter: invert(0);";
-                        else if ((_b = menuButton.getAttribute('style')) === null || _b === void 0 ? void 0 : _b.includes('1'))
-                            var attr = "filter: invert(1);";
-                        else
-                            var attr = "";
-                        // then we add the display:block value
-                        attr += "display: block;";
-                        menuButton.setAttribute('style', attr);
+                        menuButton.style.display = "block";
                     });
                 }
                 else {
@@ -211,17 +181,7 @@ function showSettingsMenu() {
                     settingsMenu.style.width = "40px";
                     settingsMenu.style.height = "40px";
                     menuButtons.forEach(function (menuButton) {
-                        var _a, _b;
-                        // we check if the filter is at 0 or 1 so we only keep the filter value
-                        if ((_a = menuButton.getAttribute('style')) === null || _a === void 0 ? void 0 : _a.includes('0'))
-                            var attr = "filter: invert(0);";
-                        else if ((_b = menuButton.getAttribute('style')) === null || _b === void 0 ? void 0 : _b.includes('1'))
-                            var attr = "filter: invert(1);";
-                        else
-                            var attr = "";
-                        // then we add the display:none value
-                        attr += "display: none;";
-                        menuButton.setAttribute('style', attr);
+                        menuButton.style.display = "none";
                     });
                 }
             }
@@ -288,13 +248,13 @@ function cookieRenewRoulette() {
 function clickMain() {
     if (menuDisplayed) {
         // close the settings menu
-        showSettingsMenu();
+        clickSettingsButton();
     }
 }
 function clickFooter() {
     if (menuDisplayed) {
         // close the settings menu
-        showSettingsMenu();
+        clickSettingsButton();
     }
 }
 // variables and constants
@@ -310,7 +270,7 @@ var clock = document.getElementById('clock');
 var main = document.getElementById('main');
 var footer = document.getElementById('footer');
 // event listeners
-settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('click', showSettingsMenu);
+settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('click', clickSettingsButton);
 settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
 settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
 clockButton === null || clockButton === void 0 ? void 0 : clockButton.addEventListener('click', clickClockButton);
