@@ -126,68 +126,63 @@ function displayTime() {
     clock.innerHTML = timeString;
 }
 function clickSettingsButton() {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            // desktop version
-            if (screenWidth > 550) {
-                if (!menuDisplayed) {
-                    // open menu
-                    menuDisplayed = true;
-                    settingsImg.style.transform = "rotate(-120deg)";
-                    settingsImg.style.opacity = "1";
-                    settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
-                    settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-                    settingsMenu.style.width = "240px";
-                    settingsMenu.style.height = "40px";
-                    menuButtons.forEach(function (menuButton) {
-                        menuButton.style.display = "block";
-                    });
-                }
-                else {
-                    // close menu
-                    menuDisplayed = false;
-                    settingsImg.style.transform = "rotate(0deg)";
-                    settingsImg.style.opacity = "0.5";
-                    settingsButton.style.backgroundColor = "transparent";
-                    settingsMenu.style.backgroundColor = "transparent";
-                    settingsMenu.style.width = "40px";
-                    menuButtons.forEach(function (menuButton) {
-                        menuButton.style.display = "none";
-                    });
-                }
-                // mobile version
-            }
-            else {
-                if (!menuDisplayed) {
-                    // open menu
-                    menuDisplayed = true;
-                    settingsImg.style.transform = "rotate(-120deg)";
-                    settingsImg.style.opacity = "1";
-                    settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
-                    settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-                    settingsMenu.style.width = "120px";
-                    settingsMenu.style.height = "80px";
-                    menuButtons.forEach(function (menuButton) {
-                        menuButton.style.display = "block";
-                    });
-                }
-                else {
-                    // close menu
-                    menuDisplayed = false;
-                    settingsImg.style.transform = "rotate(0deg)";
-                    settingsImg.style.opacity = "0.5";
-                    settingsButton.style.backgroundColor = "transparent";
-                    settingsMenu.style.backgroundColor = "transparent";
-                    settingsMenu.style.width = "40px";
-                    settingsMenu.style.height = "40px";
-                    menuButtons.forEach(function (menuButton) {
-                        menuButton.style.display = "none";
-                    });
-                }
-            }
-            return [2 /*return*/];
-        });
-    });
+    // desktop version
+    if (screenWidth > 550) {
+        if (!menuDisplayed) {
+            // open menu
+            menuDisplayed = true;
+            settingsImg.style.transform = "rotate(-120deg)";
+            settingsImg.style.opacity = "1";
+            settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+            settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+            settingsMenu.style.width = "240px";
+            settingsMenu.style.height = "40px";
+            menuButtons.forEach(function (menuButton) {
+                menuButton.style.display = "block";
+            });
+        }
+        else {
+            // close menu
+            menuDisplayed = false;
+            settingsImg.style.transform = "rotate(0deg)";
+            settingsImg.style.opacity = "0.5";
+            settingsButton.style.backgroundColor = "transparent";
+            settingsMenu.style.backgroundColor = "transparent";
+            settingsMenu.style.width = "40px";
+            menuButtons.forEach(function (menuButton) {
+                menuButton.style.display = "none";
+            });
+        }
+        // mobile version
+    }
+    else {
+        if (!menuDisplayed) {
+            // open menu
+            menuDisplayed = true;
+            settingsImg.style.transform = "rotate(-120deg)";
+            settingsImg.style.opacity = "1";
+            settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+            settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+            settingsMenu.style.width = "120px";
+            settingsMenu.style.height = "80px";
+            menuButtons.forEach(function (menuButton) {
+                menuButton.style.display = "block";
+            });
+        }
+        else {
+            // close menu
+            menuDisplayed = false;
+            settingsImg.style.transform = "rotate(0deg)";
+            settingsImg.style.opacity = "0.5";
+            settingsButton.style.backgroundColor = "transparent";
+            settingsMenu.style.backgroundColor = "transparent";
+            settingsMenu.style.width = "40px";
+            settingsMenu.style.height = "40px";
+            menuButtons.forEach(function (menuButton) {
+                menuButton.style.display = "none";
+            });
+        }
+    }
 }
 function mouseEnterSettingsButton() {
     if (!menuDisplayed) {

@@ -65,7 +65,7 @@ function displayTime(){
     clock.innerHTML = timeString;
 }
 
-async function clickSettingsButton(){
+function clickSettingsButton(){
     // desktop version
     if (screenWidth > 550){
         if (!menuDisplayed){
