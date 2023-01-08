@@ -268,8 +268,40 @@ function clickLinkButton() {
     }
 }
 function mouseEnterLinkButton() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    isMouseInLinksMenu = true;
+                    return [4 /*yield*/, sleep(500)];
+                case 1:
+                    _a.sent();
+                    // if the mouse is still on the button after 0.5 second we display the menu
+                    if (isMouseInLinksMenu) {
+                        linksMenu.style.display = "block";
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
 }
 function mouseLeaveLinkButton() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    isMouseInLinksMenu = false;
+                    return [4 /*yield*/, sleep(500)];
+                case 1:
+                    _a.sent();
+                    // if the mouse is out of the button for more than 0.5 second we hide the menu
+                    if (!isMouseInLinksMenu) {
+                        linksMenu.style.display = "none";
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
 }
 function setLinksDisplayedAtStartup() {
     var cookie = getCookie('linksDisplayed');
@@ -300,11 +332,38 @@ function setLinksDisplayedAtStartup() {
 function setLinksCookie() {
     setCookie("linksDisplayed", linksDisplayed.toString(), 7);
 }
+function mouseEnterLinksMenu() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            isMouseInLinksMenu = true;
+            return [2 /*return*/];
+        });
+    });
+}
+function mouseLeaveLinksMenu() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    isMouseInLinksMenu = false;
+                    return [4 /*yield*/, sleep(500)];
+                case 1:
+                    _a.sent();
+                    // if the mouse is out of the button for more than 0.5 second we hide the menu
+                    if (!isMouseInLinksMenu) {
+                        linksMenu.style.display = "none";
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 // variables and constants
 var menuDisplayed = false;
 var clockDisplayed = true;
 var linkMenuDisplayed = false;
 var linksDisplayed = true;
+var isMouseInLinksMenu = false;
 var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var settingsImg = document.getElementById('settings-img');
 var settingsButton = document.getElementById('settings-button');
@@ -314,16 +373,21 @@ var clockButton = document.getElementById('clock-button');
 var clock = document.getElementById('clock');
 var linkButton = document.getElementById('link-button');
 var linkContainers = Array.from(document.getElementsByClassName('link-container'));
+var linksMenu = document.getElementById('links-menu');
 var main = document.getElementById('main');
 var footer = document.getElementById('footer');
 // event listeners
-settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('click', clickSettingsButton);
-settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
-settingsButton === null || settingsButton === void 0 ? void 0 : settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
-clockButton === null || clockButton === void 0 ? void 0 : clockButton.addEventListener('click', clickClockButton);
-linkButton === null || linkButton === void 0 ? void 0 : linkButton.addEventListener('click', clickLinkButton);
-main === null || main === void 0 ? void 0 : main.addEventListener('click', clickMain);
-footer === null || footer === void 0 ? void 0 : footer.addEventListener('click', clickFooter);
+settingsButton.addEventListener('click', clickSettingsButton);
+settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
+settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
+linkButton.addEventListener('mouseenter', mouseEnterLinkButton);
+linkButton.addEventListener('mouseleave', mouseLeaveLinkButton);
+linksMenu.addEventListener('mouseenter', mouseEnterLinksMenu);
+linksMenu.addEventListener('mouseleave', mouseLeaveLinksMenu);
+clockButton.addEventListener('click', clickClockButton);
+linkButton.addEventListener('click', clickLinkButton);
+main.addEventListener('click', clickMain);
+footer.addEventListener('click', clickFooter);
 // main
 setDisplayClockAtStartup();
 setLinksDisplayedAtStartup();

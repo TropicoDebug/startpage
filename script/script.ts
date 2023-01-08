@@ -208,12 +208,22 @@ function clickLinkButton(){
     }
 }
 
-function mouseEnterLinkButton(){
-
+async function mouseEnterLinkButton(){
+    isMouseInLinksMenu = true;
+    await sleep(500);
+    // if the mouse is still on the button after 0.5 second we display the menu
+    if (isMouseInLinksMenu){
+        linksMenu.style.display = "block";
+    }
 }
 
-function mouseLeaveLinkButton(){
-
+async function mouseLeaveLinkButton(){
+    isMouseInLinksMenu = false;
+    await sleep(500);
+    // if the mouse is out of the button for more than 0.5 second we hide the menu
+    if (!isMouseInLinksMenu){
+        linksMenu.style.display = "none";
+    }
 }
 
 function setLinksDisplayedAtStartup(){
@@ -244,11 +254,25 @@ function setLinksCookie(){
     setCookie("linksDisplayed", linksDisplayed.toString(), 7);
 }
 
+async function mouseEnterLinksMenu(){
+    isMouseInLinksMenu = true;
+}
+
+async function mouseLeaveLinksMenu(){
+    isMouseInLinksMenu = false;
+    await sleep(500);
+    // if the mouse is out of the button for more than 0.5 second we hide the menu
+    if (!isMouseInLinksMenu){
+        linksMenu.style.display = "none";
+    }
+}
+
 // variables and constants
 var menuDisplayed:boolean = false;
 var clockDisplayed:boolean = true;
 var linkMenuDisplayed:boolean = false;
 var linksDisplayed:boolean = true;
+var isMouseInLinksMenu:boolean = false;
 
 var screenWidth:number = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 
@@ -261,21 +285,26 @@ const clockButton:HTMLElement = document.getElementById('clock-button')!;
 const clock:HTMLElement = document.getElementById('clock')!;
 const linkButton:HTMLElement = document.getElementById('link-button')!;
 const linkContainers = Array.from(document.getElementsByClassName('link-container') as HTMLCollectionOf<HTMLElement>);
+const linksMenu:HTMLElement = document.getElementById('links-menu')!;
 
 const main:HTMLElement = document.getElementById('main')!;
 const footer:HTMLElement = document.getElementById('footer')!;
 
 
 // event listeners
-settingsButton?.addEventListener('click', clickSettingsButton);
-settingsButton?.addEventListener('mouseenter', mouseEnterSettingsButton);
-settingsButton?.addEventListener('mouseleave', mouseLeaveSettingsButton);
+settingsButton.addEventListener('click', clickSettingsButton);
+settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
+settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
+linkButton.addEventListener('mouseenter', mouseEnterLinkButton);
+linkButton.addEventListener('mouseleave', mouseLeaveLinkButton);
+linksMenu.addEventListener('mouseenter', mouseEnterLinksMenu);
+linksMenu.addEventListener('mouseleave', mouseLeaveLinksMenu);
 
-clockButton?.addEventListener('click', clickClockButton);
-linkButton?.addEventListener('click', clickLinkButton);
+clockButton.addEventListener('click', clickClockButton);
+linkButton.addEventListener('click', clickLinkButton);
 
-main?.addEventListener('click', clickMain);
-footer?.addEventListener('click', clickFooter);
+main.addEventListener('click', clickMain);
+footer.addEventListener('click', clickFooter);
 
 
 // main
