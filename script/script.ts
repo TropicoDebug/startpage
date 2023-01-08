@@ -83,6 +83,7 @@ function clickSettingsButton(){
         } else{
             // close menu
             menuDisplayed = false;
+            linksMenu.style.display = "none";
             settingsImg.style.transform = "rotate(0deg)";
             settingsImg.style.opacity = "0.5";
             settingsButton.style.backgroundColor = "transparent";
@@ -109,6 +110,7 @@ function clickSettingsButton(){
         } else{
             // close menu
             menuDisplayed = false;
+            linksMenu.style.display = "none";
             settingsImg.style.transform = "rotate(0deg)";
             settingsImg.style.opacity = "0.5";
             settingsButton.style.backgroundColor = "transparent";
@@ -213,7 +215,7 @@ async function mouseEnterLinkButton(){
     await sleep(500);
     // if the mouse is still on the button after 0.5 second we display the menu
     if (isMouseInLinksMenu){
-        linksMenu.style.display = "block";
+        linksMenu.style.display = "flex";
     }
 }
 
@@ -270,7 +272,6 @@ async function mouseLeaveLinksMenu(){
 // variables and constants
 var menuDisplayed:boolean = false;
 var clockDisplayed:boolean = true;
-var linkMenuDisplayed:boolean = false;
 var linksDisplayed:boolean = true;
 var isMouseInLinksMenu:boolean = false;
 

@@ -144,6 +144,7 @@ function clickSettingsButton() {
         else {
             // close menu
             menuDisplayed = false;
+            linksMenu.style.display = "none";
             settingsImg.style.transform = "rotate(0deg)";
             settingsImg.style.opacity = "0.5";
             settingsButton.style.backgroundColor = "transparent";
@@ -172,6 +173,7 @@ function clickSettingsButton() {
         else {
             // close menu
             menuDisplayed = false;
+            linksMenu.style.display = "none";
             settingsImg.style.transform = "rotate(0deg)";
             settingsImg.style.opacity = "0.5";
             settingsButton.style.backgroundColor = "transparent";
@@ -278,7 +280,7 @@ function mouseEnterLinkButton() {
                     _a.sent();
                     // if the mouse is still on the button after 0.5 second we display the menu
                     if (isMouseInLinksMenu) {
-                        linksMenu.style.display = "block";
+                        linksMenu.style.display = "flex";
                     }
                     return [2 /*return*/];
             }
@@ -361,7 +363,6 @@ function mouseLeaveLinksMenu() {
 // variables and constants
 var menuDisplayed = false;
 var clockDisplayed = true;
-var linkMenuDisplayed = false;
 var linksDisplayed = true;
 var isMouseInLinksMenu = false;
 var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;

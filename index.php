@@ -59,7 +59,32 @@ if (isset($_POST['submit'])){
       </div>
     </footer>
   </div>
-<div id="links-menu"></div>
+<div id="links-menu" class="noselect">
+  <div class="links-menu-row" id="first-links-menu-row">
+    <span>github</span>
+    <input type="checkbox">
+  </div>
+  <div class="links-menu-row">
+    <span>monkeytype</span>
+    <input type="checkbox">
+  </div>
+  <div class="links-menu-row">
+    <span>youtube</span>
+    <input type="checkbox">
+  </div>
+  <div class="links-menu-row">
+    <span>twitch</span>
+    <input type="checkbox">
+  </div>
+  <div class="links-menu-row">
+    <span>chatgpt</span>
+    <input type="checkbox">
+  </div>
+  <div class="links-menu-row" id="last-links-menu-row">
+    <span>speedtest</span>
+    <input type="checkbox">
+  </div>
+</div>
 <script>var exports = {};</script>
 <script type="text/javascript" src="script/script.js"></script>
 </body>
