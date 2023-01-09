@@ -10,7 +10,7 @@ if (isset($_POST['submit'])){
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Start page</title>
 <link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/shrek" href="img/favicon.ico">
+<link rel="icon" type="image/ico" href="assets/img/favicon.ico">
 </head>
 <body>
   <div id="bg-image"></div>
@@ -21,13 +21,13 @@ if (isset($_POST['submit'])){
       </div>
       <div id="settings-menu">
         <button id="settings-button" tabindex=-1>
-          <img src="img/settings.png" id="settings-img" draggable="false">
+          <img src="assets/img/settings.png" id="settings-img" draggable="false">
         </button>
         <button class="menu-button" id="clock-button" tabindex=-1>
-          <img src="img/clock.png" class="menu-img" draggable="false">
+          <img src="assets/img/clock.png" class="menu-img" draggable="false">
         </button>
         <button class="menu-button" id="link-button" tabindex=-1>
-          <img src="img/link.png" class="menu-img" draggable="false">
+          <img src="assets/img/link.png" class="menu-img" draggable="false">
         </button>
       </div>
     </header>
@@ -116,6 +116,8 @@ if (isset($_POST['submit'])){
   </div>
 </div>
 <script>var exports = {};</script>
-<script type="text/javascript" src="script/script.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/cookies.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

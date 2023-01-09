@@ -1,26 +1,6 @@
-function setCookie(name,value,days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
-
-function sleep(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
+function setup(){
+    setupDisplayClock();
+    setupLinksDisplayed();
 }
 
 async function defil() {
@@ -136,7 +116,7 @@ function mouseLeaveSettingsButton(){
     }
 }
 
-function setDisplayClockAtStartup(){
+function setupDisplayClock(){
     var cookie = getCookie('clockDisplayed');
     // if the cookie already exist we set clockDisplayed with the right value
     if (cookie){
@@ -144,7 +124,7 @@ function setDisplayClockAtStartup(){
         else clockDisplayed = false;
     }
     // we renew/create the cookie
-    setClockCookie();
+    setClockCookie(clockDisplayed);
     if (clockDisplayed){
         // display clock
         clock.style.display = "inline-block";
@@ -162,18 +142,14 @@ function clickClockButton(){
         clock.style.display = "inline-block";
         clockButton.style.filter = "invert(1)";
         clockDisplayed = true;
-        setClockCookie();
+        setClockCookie(clockDisplayed);
     } else{
         // hide clock
         clock.style.display = "none";
         clockButton.style.filter = "invert(0)";
         clockDisplayed = false;
-        setClockCookie();
+        setClockCookie(clockDisplayed);
     }
-}
-
-function setClockCookie(){
-    setCookie("clockDisplayed", clockDisplayed.toString(), 7);
 }
 
 function clickMain(){
@@ -198,7 +174,7 @@ function clickLinkButton(){
         });
         linkButton.style.filter = "invert(1)";
         linksDisplayed = true;
-        setLinksCookie();
+        setLinksCookie(linksDisplayed);
     } else{
         // hide links
         linkContainers.forEach(linkContainer => {
@@ -206,8 +182,19 @@ function clickLinkButton(){
         });
         linkButton.style.filter = "invert(0)";
         linksDisplayed = false;
-        setLinksCookie();
+        setLinksCookie(linksDisplayed);
     }
+}
+
+function displayLinksMenu(){
+    // desktop version
+    if (screenWidth > 550){
+        linksMenu.style.display = "flex";
+    }
+}
+
+function hideLinksMenu(){
+    linksMenu.style.display = "none";
 }
 
 async function mouseEnterLinkButton(){
@@ -215,7 +202,7 @@ async function mouseEnterLinkButton(){
     await sleep(500);
     // if the mouse is still on the button after 0.5 second we display the menu
     if (isMouseInLinksMenu){
-        linksMenu.style.display = "flex";
+        displayLinksMenu();
     }
 }
 
@@ -224,11 +211,11 @@ async function mouseLeaveLinkButton(){
     await sleep(500);
     // if the mouse is out of the button for more than 0.5 second we hide the menu
     if (!isMouseInLinksMenu){
-        linksMenu.style.display = "none";
+        hideLinksMenu();
     }
 }
 
-function setLinksDisplayedAtStartup(){
+function setupLinksDisplayed(){
     var cookie = getCookie('linksDisplayed');
     // if the cookie already exist we set linksDisplayed with the right value
     if (cookie){
@@ -236,7 +223,7 @@ function setLinksDisplayedAtStartup(){
         else linksDisplayed = false;
     }
     // we renew/create the cookie
-    setLinksCookie();
+    setLinksCookie(linksDisplayed);
     if (linksDisplayed){
         // display links
         linkContainers.forEach(linkContainer => {
@@ -252,10 +239,6 @@ function setLinksDisplayedAtStartup(){
     }
 }
 
-function setLinksCookie(){
-    setCookie("linksDisplayed", linksDisplayed.toString(), 7);
-}
-
 async function mouseEnterLinksMenu(){
     isMouseInLinksMenu = true;
 }
@@ -265,9 +248,9 @@ async function mouseLeaveLinksMenu(){
     await sleep(500);
     // if the mouse is out of the button for more than 0.5 second we hide the menu
     if (!isMouseInLinksMenu){
-        linksMenu.style.display = "none";
+        hideLinksMenu();
     }
-}
+}   
 
 // variables and constants
 var menuDisplayed:boolean = false;
@@ -309,8 +292,7 @@ footer.addEventListener('click', clickFooter);
 
 
 // main
-setDisplayClockAtStartup();
-setLinksDisplayedAtStartup();
+setup();
 displayTime();
 // this call the appearing sentence animation
 defil();
