@@ -11,6 +11,98 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 function setup() {
     setupDisplayClock();
     setupLinksDisplayed();
+    setupEventListeners();
+}
+function setupDisplayClock() {
+    var cookie = getCookie('clockDisplayed');
+    // if the cookie already exist we set clockDisplayed with the right value
+    if (cookie) {
+        if (cookie == "true")
+            clockDisplayed = true;
+        else
+            clockDisplayed = false;
+    }
+    // we renew/create the cookie
+    setClockCookie(clockDisplayed);
+    if (clockDisplayed) {
+        // display clock
+        clock.style.display = "inline-block";
+        clockButton.style.filter = "invert(1)";
+    }
+    else {
+        // do not display clock
+        clock.style.display = "none";
+        clockButton.style.filter = "invert(0)";
+    }
+}
+function setupLinksDisplayed() {
+    var cookie = getCookie('linksDisplayed');
+    // if the cookie already exist we set linksDisplayed with the right value
+    if (cookie) {
+        if (cookie == "true")
+            linksDisplayed = true;
+        else
+            linksDisplayed = false;
+    }
+    // we renew/create the cookie
+    setLinksCookie(linksDisplayed);
+    cookie = getCookie('linksValue');
+    if (cookie) {
+        // if the cookie existed we give his value to linksValue
+        linksValue = cookie;
+    }
+    // we renew/create the cookie
+    setLinksValueCookie(linksValue);
+    if (linksDisplayed) {
+        var counter = 0;
+        // display links with the value of the linksValue cookie
+        linkContainers.forEach(linkContainer => {
+            var currentCb = document.getElementById(linkContainer.id.replace("-link", ""));
+            if (linksValue[counter] == "1") {
+                linkContainer.style.display = "block";
+                currentCb.checked = true;
+            }
+            else {
+                linkContainer.style.display = "none";
+                currentCb.checked = false;
+            }
+            counter++;
+        });
+        linkButton.style.filter = "invert(1)";
+    }
+    else {
+        var counter = 0;
+        // do not display links
+        linkContainers.forEach(linkContainer => {
+            var currentCb = document.getElementById(linkContainer.id.replace("-link", ""));
+            if (linksValue[counter] == "1") {
+                currentCb.checked = true;
+            }
+            else {
+                currentCb.checked = false;
+            }
+            linkContainer.style.display = "none";
+            counter++;
+        });
+        linkButton.style.filter = "invert(0)";
+    }
+}
+function setupEventListeners() {
+    settingsButton.addEventListener('click', clickSettingsButton);
+    settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
+    settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
+    linkButton.addEventListener('mouseenter', mouseEnterLinkButton);
+    linkButton.addEventListener('mouseleave', mouseLeaveLinkButton);
+    linksMenu.addEventListener('mouseenter', mouseEnterLinksMenu);
+    linksMenu.addEventListener('mouseleave', mouseLeaveLinksMenu);
+    clockButton.addEventListener('click', clickClockButton);
+    linkButton.addEventListener('click', clickLinkButton);
+    main.addEventListener('click', clickMain);
+    footer.addEventListener('click', clickFooter);
+    // links menu items event listeners
+    linksMenuCheckboxes.forEach(linkCheckbox => {
+        linkCheckbox.addEventListener('click', clickLinksMenuItems);
+    });
 }
 function defil() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -127,28 +219,6 @@ function mouseLeaveSettingsButton() {
         settingsImg.style.opacity = "0.5";
     }
 }
-function setupDisplayClock() {
-    var cookie = getCookie('clockDisplayed');
-    // if the cookie already exist we set clockDisplayed with the right value
-    if (cookie) {
-        if (cookie == "true")
-            clockDisplayed = true;
-        else
-            clockDisplayed = false;
-    }
-    // we renew/create the cookie
-    setClockCookie(clockDisplayed);
-    if (clockDisplayed) {
-        // display clock
-        clock.style.display = "inline-block";
-        clockButton.style.filter = "invert(1)";
-    }
-    else {
-        // do not display clock
-        clock.style.display = "none";
-        clockButton.style.filter = "invert(0)";
-    }
-}
 function clickClockButton() {
     if (!clockDisplayed) {
         // display clock
@@ -179,9 +249,14 @@ function clickFooter() {
 }
 function clickLinkButton() {
     if (!linksDisplayed) {
-        // display links
+        var counter = 0;
+        // display links with the value of the linksValue cookie
         linkContainers.forEach(linkContainer => {
-            linkContainer.style.display = "block";
+            if (linksValue[counter] == "1")
+                linkContainer.style.display = "block";
+            else
+                linkContainer.style.display = "none";
+            counter++;
         });
         linkButton.style.filter = "invert(1)";
         linksDisplayed = true;
@@ -226,36 +301,8 @@ function mouseLeaveLinkButton() {
         }
     });
 }
-function setupLinksDisplayed() {
-    var cookie = getCookie('linksDisplayed');
-    // if the cookie already exist we set linksDisplayed with the right value
-    if (cookie) {
-        if (cookie == "true")
-            linksDisplayed = true;
-        else
-            linksDisplayed = false;
-    }
-    // we renew/create the cookie
-    setLinksCookie(linksDisplayed);
-    if (linksDisplayed) {
-        // display links
-        linkContainers.forEach(linkContainer => {
-            linkContainer.style.display = "block";
-        });
-        linkButton.style.filter = "invert(1)";
-    }
-    else {
-        // do not display links
-        linkContainers.forEach(linkContainer => {
-            linkContainer.style.display = "none";
-        });
-        linkButton.style.filter = "invert(0)";
-    }
-}
 function mouseEnterLinksMenu() {
-    return __awaiter(this, void 0, void 0, function* () {
-        isMouseInLinksMenu = true;
-    });
+    isMouseInLinksMenu = true;
 }
 function mouseLeaveLinksMenu() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -267,10 +314,38 @@ function mouseLeaveLinksMenu() {
         }
     });
 }
+function clickLinksMenuItems() {
+    var linksValueCookie = "";
+    if (linksDisplayed) {
+        linksMenuCheckboxes.forEach(cb => {
+            if (cb.checked) {
+                document.getElementById(cb.id + "-link").style.display = "block";
+                linksValueCookie += "1";
+            }
+            else {
+                document.getElementById(cb.id + "-link").style.display = "none";
+                linksValueCookie += "0";
+            }
+        });
+    }
+    else {
+        linksMenuCheckboxes.forEach(cb => {
+            if (cb.checked) {
+                linksValueCookie += "1";
+            }
+            else {
+                linksValueCookie += "0";
+            }
+        });
+    }
+    // setup cookies
+    setLinksValueCookie(linksValueCookie);
+}
 // variables and constants
 var menuDisplayed = false;
 var clockDisplayed = true;
 var linksDisplayed = true;
+var linksValue = "111111";
 var isMouseInLinksMenu = false;
 var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 const settingsImg = document.getElementById('settings-img');
@@ -282,20 +357,9 @@ const clock = document.getElementById('clock');
 const linkButton = document.getElementById('link-button');
 const linkContainers = Array.from(document.getElementsByClassName('link-container'));
 const linksMenu = document.getElementById('links-menu');
+const linksMenuCheckboxes = Array.from(document.getElementsByClassName('links-menu-checkboxes'));
 const main = document.getElementById('main');
 const footer = document.getElementById('footer');
-// event listeners
-settingsButton.addEventListener('click', clickSettingsButton);
-settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
-settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
-linkButton.addEventListener('mouseenter', mouseEnterLinkButton);
-linkButton.addEventListener('mouseleave', mouseLeaveLinkButton);
-linksMenu.addEventListener('mouseenter', mouseEnterLinksMenu);
-linksMenu.addEventListener('mouseleave', mouseLeaveLinksMenu);
-clockButton.addEventListener('click', clickClockButton);
-linkButton.addEventListener('click', clickLinkButton);
-main.addEventListener('click', clickMain);
-footer.addEventListener('click', clickFooter);
 // main
 setup();
 displayTime();

@@ -26,3 +26,6 @@ function setClockCookie(clockDisplayed) {
 function setLinksCookie(linksDisplayed) {
     setCookie("linksDisplayed", linksDisplayed.toString(), 7);
 }
+function setLinksValueCookie(linksValue) {
+    setCookie("linksValue", linksValue, 7);
+}

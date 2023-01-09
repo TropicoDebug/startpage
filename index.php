@@ -39,22 +39,22 @@ if (isset($_POST['submit'])){
       </form>
     </main>
     <footer id="footer" class="noselect">
-      <div class="link-container">
+      <div class="link-container" id="github-link">
         <a href="https://www.github.com" class="noselect">github</a>
       </div>
-      <div class="link-container">
+      <div class="link-container" id="monkeytype-link">
         <a href="https://monkeytype.com" class="noselect">monkeytype</a>
       </div>
-      <div class="link-container">
+      <div class="link-container" id="youtube-link">
         <a href="https://www.youtube.com" class="noselect">youtube</a>
       </div>
-      <div class="link-container">
+      <div class="link-container" id="twitch-link">
         <a href="https://twitch.tv" class="noselect">twitch</a>
       </div>
-      <div class="link-container">
+      <div class="link-container" id="chatgpt-link">
         <a href="https://chat.openai.com/chat" class="noselect">chatgpt</a>
       </div>
-      <div class="link-container">
+      <div class="link-container" id="speedtest-link">
         <a href="https://speedtest.net" class="noselect">speedtest</a>
       </div>
     </footer>
@@ -63,7 +63,7 @@ if (isset($_POST['submit'])){
   <div class="links-menu-row" id="first-links-menu-row">
     <span>github</span>
     <label class="toggler-wrapper style-1">
-      <input type="checkbox" >
+      <input type="checkbox" class="links-menu-checkboxes" id="github" checked>
       <div class="toggler-slider">
         <div class="toggler-knob"></div>
       </div>
@@ -72,7 +72,7 @@ if (isset($_POST['submit'])){
   <div class="links-menu-row">
     <span>monkeytype</span>
     <label class="toggler-wrapper style-1">
-      <input type="checkbox" >
+      <input type="checkbox" class="links-menu-checkboxes" id="monkeytype" checked>
       <div class="toggler-slider">
         <div class="toggler-knob"></div>
       </div>
@@ -81,7 +81,7 @@ if (isset($_POST['submit'])){
   <div class="links-menu-row">
     <span>youtube</span>
     <label class="toggler-wrapper style-1">
-      <input type="checkbox" >
+      <input type="checkbox" class="links-menu-checkboxes" id="youtube" checked>
       <div class="toggler-slider">
         <div class="toggler-knob"></div>
       </div>
@@ -90,7 +90,7 @@ if (isset($_POST['submit'])){
   <div class="links-menu-row">
     <span>twitch</span>
     <label class="toggler-wrapper style-1">
-      <input type="checkbox" >
+      <input type="checkbox" class="links-menu-checkboxes" id="twitch" checked>
       <div class="toggler-slider">
         <div class="toggler-knob"></div>
       </div>
@@ -99,7 +99,7 @@ if (isset($_POST['submit'])){
   <div class="links-menu-row">
     <span>chatgpt</span>
     <label class="toggler-wrapper style-1">
-      <input type="checkbox" >
+      <input type="checkbox" class="links-menu-checkboxes" id="chatgpt" checked>
       <div class="toggler-slider">
         <div class="toggler-knob"></div>
       </div>
@@ -108,7 +108,7 @@ if (isset($_POST['submit'])){
   <div class="links-menu-row" id="last-links-menu-row">
     <span>speedtest</span>
     <label class="toggler-wrapper style-1">
-      <input type="checkbox" >
+      <input type="checkbox" class="links-menu-checkboxes" id="speedtest" checked>
       <div class="toggler-slider">
         <div class="toggler-knob"></div>
       </div>
