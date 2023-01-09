@@ -338,6 +338,7 @@ function clickLinksMenuItems() {
             }
         });
     }
+    linksValue = linksValueCookie;
     // setup cookies
     setLinksValueCookie(linksValueCookie);
 }

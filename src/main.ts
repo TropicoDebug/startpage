@@ -325,6 +325,7 @@ function clickLinksMenuItems(this: any){
             }
         });
     }
+    linksValue = linksValueCookie;
     // setup cookies
     setLinksValueCookie(linksValueCookie);
 }
