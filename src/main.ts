@@ -105,20 +105,17 @@ async function defil() {
     input.innerHTML += "<span id=\"blink\">?</span>";
 }
 
-function blinkChar() {
-    const questionMark:HTMLInputElement = document.getElementById('blink')! as HTMLInputElement;
-    if (questionMark === null) return;
-    if (questionMark.style.visibility === 'hidden') {
-        questionMark.style.visibility = 'visible';
-    } else {
-        questionMark.style.visibility = 'hidden';
+async function blinkChar() {
+    await sleep(700);
+    const questionMark:HTMLInputElement = document.getElementById('blink') as HTMLInputElement;
+    if (questionMark != null){
+        if (questionMark.style.visibility === 'hidden') {
+            questionMark.style.visibility = 'visible';
+        } else {
+            questionMark.style.visibility = 'hidden';
+        }
     }
-}
-
-async function callBlinkChar(){
-    await sleep(Math.floor(Math.random() * 500) + 1);
-    blinkChar();
-    setTimeout(callBlinkChar, 700);
+    setTimeout(blinkChar, randomIntFromInterval(1, 500));
 }
 
 function displayTime(){
@@ -328,4 +325,4 @@ displayTime();
 // this call the appearing sentence animation
 defil();
 // this animate the question mark
-callBlinkChar();
+blinkChar();
