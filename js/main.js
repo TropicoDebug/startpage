@@ -129,21 +129,13 @@ function callBlinkChar() {
     return __awaiter(this, void 0, void 0, function* () {
         yield sleep(Math.floor(Math.random() * 500) + 1);
         blinkChar();
+        setTimeout(callBlinkChar, 700);
     });
 }
 function displayTime() {
-    const currentTime = new Date();
-    var hours = currentTime.getHours().toString();
-    if (hours.length == 1)
-        hours = "0" + hours;
-    var minutes = currentTime.getMinutes().toString();
-    if (minutes.length == 1)
-        minutes = "0" + minutes;
-    const timeString = `${hours}:${minutes}`;
-    const clock = document.getElementById('clock');
-    if (clock === null)
-        return;
-    clock.innerHTML = timeString;
+    clock.innerHTML = getTime();
+    // update the clock every second
+    setTimeout(displayTime, 1000);
 }
 function clickSettingsButton() {
     // desktop version
@@ -341,31 +333,10 @@ function clickLinksMenuItems() {
     // setup cookies
     setLinksValueCookie(newLinksValue);
 }
-// variables and constants
-var menuDisplayed = false;
-var clockDisplayed = true;
-var linksDisplayed = true;
-var linksValue = "111111";
-var isMouseInLinksMenu = false;
-var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-const settingsImg = document.getElementById('settings-img');
-const settingsButton = document.getElementById('settings-button');
-const settingsMenu = document.getElementById('settings-menu');
-const menuButtons = Array.from(document.getElementsByClassName('menu-button'));
-const clockButton = document.getElementById('clock-button');
-const clock = document.getElementById('clock');
-const linkButton = document.getElementById('link-button');
-const linkContainers = Array.from(document.getElementsByClassName('link-container'));
-const linksMenu = document.getElementById('links-menu');
-const linksMenuCheckboxes = Array.from(document.getElementsByClassName('links-menu-checkboxes'));
-const main = document.getElementById('main');
-const footer = document.getElementById('footer');
 // main
 setup();
 displayTime();
 // this call the appearing sentence animation
 defil();
 // this animate the question mark
-setInterval(callBlinkChar, 700);
-// this update the clock
-setInterval(displayTime, 1000);
+callBlinkChar();

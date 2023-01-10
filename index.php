@@ -116,6 +116,8 @@ if (isset($_POST['submit'])){
   </div>
 </div>
 <script>var exports = {};</script>
+<script type="text/javascript" src="js/constants.js"></script>
+<script type="text/javascript" src="js/globalData.js"></script>
 <script type="text/javascript" src="js/utils.js"></script>
 <script type="text/javascript" src="js/cookies.js"></script>
 <script type="text/javascript" src="js/main.js"></script>

@@ -106,7 +106,7 @@ async function defil() {
 }
 
 function blinkChar() {
-    const questionMark:HTMLInputElement = document.getElementById('blink') as HTMLInputElement;
+    const questionMark:HTMLInputElement = document.getElementById('blink')! as HTMLInputElement;
     if (questionMark === null) return;
     if (questionMark.style.visibility === 'hidden') {
         questionMark.style.visibility = 'visible';
@@ -118,20 +118,13 @@ function blinkChar() {
 async function callBlinkChar(){
     await sleep(Math.floor(Math.random() * 500) + 1);
     blinkChar();
+    setTimeout(callBlinkChar, 700);
 }
 
 function displayTime(){
-    const currentTime:Date = new Date();
-    var hours:string = currentTime.getHours().toString();
-    if (hours.length == 1) hours = "0" + hours;
-    
-    var minutes:string = currentTime.getMinutes().toString();
-    if (minutes.length == 1) minutes = "0" + minutes;
-    
-    const timeString:string = `${hours}:${minutes}`;
-    const clock = document.getElementById('clock');
-    if (clock === null) return;
-    clock.innerHTML = timeString;
+    clock.innerHTML = getTime();
+    // update the clock every second
+    setTimeout(displayTime, 1000);
 }
 
 function clickSettingsButton(){
@@ -329,39 +322,10 @@ function clickLinksMenuItems(){
 }
 
 
-// variables and constants
-var menuDisplayed:boolean = false;
-var clockDisplayed:boolean = true;
-var linksDisplayed:boolean = true;
-var linksValue:string = "111111";
-var isMouseInLinksMenu:boolean = false;
-
-var screenWidth:number = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-
-const settingsImg:HTMLElement = document.getElementById('settings-img')!;
-const settingsButton:HTMLElement = document.getElementById('settings-button')!;
-const settingsMenu:HTMLElement = document.getElementById('settings-menu')!;
-const menuButtons:HTMLElement[] = Array.from(document.getElementsByClassName('menu-button') as HTMLCollectionOf<HTMLElement>);
-
-const clockButton:HTMLElement = document.getElementById('clock-button')!;
-const clock:HTMLElement = document.getElementById('clock')!;
-
-const linkButton:HTMLElement = document.getElementById('link-button')!;
-const linkContainers:HTMLElement[] = Array.from(document.getElementsByClassName('link-container') as HTMLCollectionOf<HTMLElement>);
-const linksMenu:HTMLElement = document.getElementById('links-menu')!;
-const linksMenuCheckboxes:HTMLInputElement[] = Array.from(document.getElementsByClassName('links-menu-checkboxes') as HTMLCollectionOf<HTMLInputElement>);
-
-
-const main:HTMLElement = document.getElementById('main')!;
-const footer:HTMLElement = document.getElementById('footer')!;
-
-
 // main
 setup();
 displayTime();
 // this call the appearing sentence animation
 defil();
 // this animate the question mark
-setInterval(callBlinkChar, 700);
-// this update the clock
-setInterval(displayTime, 1000);
+callBlinkChar();
