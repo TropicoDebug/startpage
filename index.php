@@ -8,7 +8,7 @@ if (isset($_POST['submit'])){
 <html>
 <head>
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Start page</title>
+<title>shrek.tech</title>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/ico" href="assets/img/favicon.ico">
 </head>
@@ -121,3 +121,5 @@ if (isset($_POST['submit'])){
 <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
+
+<!-- https://github.com/ctside/startpage -->

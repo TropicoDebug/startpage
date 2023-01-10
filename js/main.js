@@ -9,9 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 function setup() {
-    setupDisplayClock();
-    setupLinksDisplayed();
     setupEventListeners();
+    setupDisplayClock();
+    setupDisplayLinks();
+}
+function setupEventListeners() {
+    settingsButton.addEventListener('click', clickSettingsButton);
+    settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
+    settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
+    linkButton.addEventListener('mouseenter', mouseEnterLinkButton);
+    linkButton.addEventListener('mouseleave', mouseLeaveLinkButton);
+    linksMenu.addEventListener('mouseenter', mouseEnterLinksMenu);
+    linksMenu.addEventListener('mouseleave', mouseLeaveLinksMenu);
+    clockButton.addEventListener('click', clickClockButton);
+    linkButton.addEventListener('click', clickLinkButton);
+    main.addEventListener('click', clickMain);
+    footer.addEventListener('click', clickFooter);
+    // links menu items event listeners
+    linksMenuCheckboxes.forEach(linkCheckbox => {
+        linkCheckbox.addEventListener('click', clickLinksMenuItems);
+    });
 }
 function setupDisplayClock() {
     var cookie = getCookie('clockDisplayed');
@@ -35,7 +52,7 @@ function setupDisplayClock() {
         clockButton.style.filter = "invert(0)";
     }
 }
-function setupLinksDisplayed() {
+function setupDisplayLinks() {
     var cookie = getCookie('linksDisplayed');
     // if the cookie already exist we set linksDisplayed with the right value
     if (cookie) {
@@ -54,55 +71,35 @@ function setupLinksDisplayed() {
     // we renew/create the cookie
     setLinksValueCookie(linksValue);
     if (linksDisplayed) {
-        var counter = 0;
         // display links with the value of the linksValue cookie
-        linkContainers.forEach(linkContainer => {
-            var currentCb = document.getElementById(linkContainer.id.replace("-link", ""));
+        var counter = 0;
+        linksMenuCheckboxes.forEach(cb => {
             if (linksValue[counter] == "1") {
-                linkContainer.style.display = "block";
-                currentCb.checked = true;
+                document.getElementById(cb.id + "-link").style.display = "block";
+                cb.checked = true;
             }
             else {
-                linkContainer.style.display = "none";
-                currentCb.checked = false;
+                document.getElementById(cb.id + "-link").style.display = "none";
+                cb.checked = false;
             }
             counter++;
         });
         linkButton.style.filter = "invert(1)";
     }
     else {
+        // we don't display links but we setup the links checkboxes
         var counter = 0;
-        // do not display links
-        linkContainers.forEach(linkContainer => {
-            var currentCb = document.getElementById(linkContainer.id.replace("-link", ""));
+        linksMenuCheckboxes.forEach(cb => {
             if (linksValue[counter] == "1") {
-                currentCb.checked = true;
+                cb.checked = true;
             }
             else {
-                currentCb.checked = false;
+                cb.checked = false;
             }
-            linkContainer.style.display = "none";
             counter++;
         });
         linkButton.style.filter = "invert(0)";
     }
-}
-function setupEventListeners() {
-    settingsButton.addEventListener('click', clickSettingsButton);
-    settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
-    settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
-    linkButton.addEventListener('mouseenter', mouseEnterLinkButton);
-    linkButton.addEventListener('mouseleave', mouseLeaveLinkButton);
-    linksMenu.addEventListener('mouseenter', mouseEnterLinksMenu);
-    linksMenu.addEventListener('mouseleave', mouseLeaveLinksMenu);
-    clockButton.addEventListener('click', clickClockButton);
-    linkButton.addEventListener('click', clickLinkButton);
-    main.addEventListener('click', clickMain);
-    footer.addEventListener('click', clickFooter);
-    // links menu items event listeners
-    linksMenuCheckboxes.forEach(linkCheckbox => {
-        linkCheckbox.addEventListener('click', clickLinksMenuItems);
-    });
 }
 function defil() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -250,7 +247,7 @@ function clickFooter() {
 function clickLinkButton() {
     if (!linksDisplayed) {
         var counter = 0;
-        // display links with the value of the linksValue cookie
+        // display links using linksValue
         linkContainers.forEach(linkContainer => {
             if (linksValue[counter] == "1")
                 linkContainer.style.display = "block";
@@ -308,39 +305,41 @@ function mouseLeaveLinksMenu() {
     return __awaiter(this, void 0, void 0, function* () {
         isMouseInLinksMenu = false;
         yield sleep(500);
-        // if the mouse is out of the button for more than 0.5 second we hide the menu
+        // if the mouse is out of the menu for more than 0.5 second we hide the menu
         if (!isMouseInLinksMenu) {
             hideLinksMenu();
         }
     });
 }
 function clickLinksMenuItems() {
-    var linksValueCookie = "";
+    var newLinksValue = "";
     if (linksDisplayed) {
+        // update the displayed links and linksValue
         linksMenuCheckboxes.forEach(cb => {
             if (cb.checked) {
                 document.getElementById(cb.id + "-link").style.display = "block";
-                linksValueCookie += "1";
+                newLinksValue += "1";
             }
             else {
                 document.getElementById(cb.id + "-link").style.display = "none";
-                linksValueCookie += "0";
+                newLinksValue += "0";
             }
         });
     }
     else {
+        // update linksValue
         linksMenuCheckboxes.forEach(cb => {
             if (cb.checked) {
-                linksValueCookie += "1";
+                newLinksValue += "1";
             }
             else {
-                linksValueCookie += "0";
+                newLinksValue += "0";
             }
         });
     }
-    linksValue = linksValueCookie;
+    linksValue = newLinksValue;
     // setup cookies
-    setLinksValueCookie(linksValueCookie);
+    setLinksValueCookie(newLinksValue);
 }
 // variables and constants
 var menuDisplayed = false;
