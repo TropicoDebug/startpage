@@ -106,7 +106,7 @@ async function defil() {
 }
 
 async function blinkChar() {
-    await sleep(700);
+    await sleep(500);
     const questionMark:HTMLInputElement = document.getElementById('blink') as HTMLInputElement;
     if (questionMark != null){
         if (questionMark.style.visibility === 'hidden') {
@@ -115,7 +115,7 @@ async function blinkChar() {
             questionMark.style.visibility = 'hidden';
         }
     }
-    setTimeout(blinkChar, randomIntFromInterval(1, 500));
+    setTimeout(blinkChar, randomIntFromInterval(1, 700));
 }
 
 function displayTime(){

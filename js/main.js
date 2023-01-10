@@ -105,7 +105,7 @@ function defil() {
 }
 function blinkChar() {
     return __awaiter(this, void 0, void 0, function* () {
-        yield sleep(700);
+        yield sleep(500);
         const questionMark = document.getElementById('blink');
         if (questionMark != null) {
             if (questionMark.style.visibility === 'hidden') {
@@ -115,7 +115,7 @@ function blinkChar() {
                 questionMark.style.visibility = 'hidden';
             }
         }
-        setTimeout(blinkChar, randomIntFromInterval(1, 500));
+        setTimeout(blinkChar, randomIntFromInterval(1, 700));
     });
 }
 function displayTime() {
