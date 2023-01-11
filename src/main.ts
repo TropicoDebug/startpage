@@ -16,13 +16,16 @@ function setupEventListeners(){
     clockButton.addEventListener('click', clickClockButton);
     linkButton.addEventListener('click', clickLinkButton);
 
-    main.addEventListener('click', clickMain);
-    footer.addEventListener('click', clickFooter);
-
     // links menu items event listeners
     linksMenuCheckboxes.forEach(linkCheckbox => {
         linkCheckbox.addEventListener('click', clickLinksMenuItems);
     });
+
+    playPauseButton.addEventListener('click', clickPlayPauseButton);
+    volumeButton.addEventListener('click', clickVolumeButton);
+    
+    main.addEventListener('click', clickMain);
+    footer.addEventListener('click', clickFooter);
 }
 
 function setupDisplayClock(){
@@ -124,7 +127,7 @@ function displayTime(){
     setTimeout(displayTime, 1000);
 }
 
-function clickSettingsButton(){
+async function clickSettingsButton(){
     // desktop version
     if (screenWidth > 550){
         if (!menuDisplayed){
@@ -136,6 +139,7 @@ function clickSettingsButton(){
             settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
             settingsMenu.style.width = "240px";
             settingsMenu.style.height = "40px";
+            await sleep(100);
             menuButtons.forEach(menuButton => {
                 menuButton.style.display = "block";
             });
@@ -163,6 +167,7 @@ function clickSettingsButton(){
             settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
             settingsMenu.style.width = "120px";
             settingsMenu.style.height = "80px";
+            await sleep(100);
             menuButtons.forEach(menuButton => {
                 menuButton.style.display = "block";
             });
@@ -316,6 +321,38 @@ function clickLinksMenuItems(){
     linksValue = newLinksValue;
     // setup cookies
     setLinksValueCookie(newLinksValue);
+}
+
+function clickPlayPauseButton(){
+    if (!isMusicPlaying){
+        // play music and change img
+        playPauseImg.src = "assets/img/pause.png";
+        isMusicPlaying = true;
+    } else{
+        // pause music and change img
+        playPauseImg.src = "assets/img/play.png";
+        isMusicPlaying = false;
+    }
+}
+
+function clickVolumeButton(){
+    if (isVolumeMuted){
+        // unmute the music
+        volumeImg.src = `assets/img/${getVolumeImageFromVolumeLevel()}`;
+        volumeButton.style.filter = "invert(1)";
+        isVolumeMuted = false;
+    } else{
+        // mute the music
+        volumeImg.src = "assets/img/volume-x.svg";
+        volumeButton.style.filter = "invert(0)";
+        isVolumeMuted = true;
+    }
+}
+
+function getVolumeImageFromVolumeLevel(){
+    if (volume == 0) return "volume-0.svg";
+    else if (volume < 10) return "volume-1.svg";
+    else return "volume-2.svg";
 }
 
 

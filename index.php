@@ -29,6 +29,12 @@ if (isset($_POST['submit'])){
         <button class="menu-button" id="link-button" tabindex=-1>
           <img src="assets/img/link.png" class="menu-img" draggable="false">
         </button>
+        <button class="menu-button" id="play-pause-button" tabindex=-1>
+          <img src="assets/img/play.png" class="menu-img" id="play-pause-img" draggable="false">
+        </button>
+        <button class="menu-button" id="volume-button" tabindex=-1>
+          <img src="assets/img/volume-x.svg" class="menu-img" id="volume-img" draggable="false">
+        </button>
       </div>
     </header>
     <main id="main" class="noselect">

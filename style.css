@@ -261,6 +261,12 @@ header{
   margin-bottom: 15px;
 }
 
+#play-pause-img{
+  margin: 20%;
+  height: 60%;
+  width: 60%;
+}
+
 main{
   height: 100%;
   width: 100%;

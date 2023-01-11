@@ -23,11 +23,13 @@ function setupEventListeners() {
     linksMenu.addEventListener('mouseleave', mouseLeaveLinksMenu);
     clockButton.addEventListener('click', clickClockButton);
     linkButton.addEventListener('click', clickLinkButton);
-    main.addEventListener('click', clickMain);
-    footer.addEventListener('click', clickFooter);
     linksMenuCheckboxes.forEach(linkCheckbox => {
         linkCheckbox.addEventListener('click', clickLinksMenuItems);
     });
+    playPauseButton.addEventListener('click', clickPlayPauseButton);
+    volumeButton.addEventListener('click', clickVolumeButton);
+    main.addEventListener('click', clickMain);
+    footer.addEventListener('click', clickFooter);
 }
 function setupDisplayClock() {
     var cookie = getCookie('clockDisplayed');
@@ -123,59 +125,63 @@ function displayTime() {
     setTimeout(displayTime, 1000);
 }
 function clickSettingsButton() {
-    if (screenWidth > 550) {
-        if (!menuDisplayed) {
-            menuDisplayed = true;
-            settingsImg.style.transform = "rotate(-120deg)";
-            settingsImg.style.opacity = "1";
-            settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
-            settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-            settingsMenu.style.width = "240px";
-            settingsMenu.style.height = "40px";
-            menuButtons.forEach(menuButton => {
-                menuButton.style.display = "block";
-            });
+    return __awaiter(this, void 0, void 0, function* () {
+        if (screenWidth > 550) {
+            if (!menuDisplayed) {
+                menuDisplayed = true;
+                settingsImg.style.transform = "rotate(-120deg)";
+                settingsImg.style.opacity = "1";
+                settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+                settingsMenu.style.width = "240px";
+                settingsMenu.style.height = "40px";
+                yield sleep(100);
+                menuButtons.forEach(menuButton => {
+                    menuButton.style.display = "block";
+                });
+            }
+            else {
+                menuDisplayed = false;
+                linksMenu.style.display = "none";
+                settingsImg.style.transform = "rotate(0deg)";
+                settingsImg.style.opacity = "0.5";
+                settingsButton.style.backgroundColor = "transparent";
+                settingsMenu.style.backgroundColor = "transparent";
+                settingsMenu.style.width = "40px";
+                menuButtons.forEach(menuButton => {
+                    menuButton.style.display = "none";
+                });
+            }
         }
         else {
-            menuDisplayed = false;
-            linksMenu.style.display = "none";
-            settingsImg.style.transform = "rotate(0deg)";
-            settingsImg.style.opacity = "0.5";
-            settingsButton.style.backgroundColor = "transparent";
-            settingsMenu.style.backgroundColor = "transparent";
-            settingsMenu.style.width = "40px";
-            menuButtons.forEach(menuButton => {
-                menuButton.style.display = "none";
-            });
+            if (!menuDisplayed) {
+                menuDisplayed = true;
+                settingsImg.style.transform = "rotate(-120deg)";
+                settingsImg.style.opacity = "1";
+                settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+                settingsMenu.style.width = "120px";
+                settingsMenu.style.height = "80px";
+                yield sleep(100);
+                menuButtons.forEach(menuButton => {
+                    menuButton.style.display = "block";
+                });
+            }
+            else {
+                menuDisplayed = false;
+                linksMenu.style.display = "none";
+                settingsImg.style.transform = "rotate(0deg)";
+                settingsImg.style.opacity = "0.5";
+                settingsButton.style.backgroundColor = "transparent";
+                settingsMenu.style.backgroundColor = "transparent";
+                settingsMenu.style.width = "40px";
+                settingsMenu.style.height = "40px";
+                menuButtons.forEach(menuButton => {
+                    menuButton.style.display = "none";
+                });
+            }
         }
-    }
-    else {
-        if (!menuDisplayed) {
-            menuDisplayed = true;
-            settingsImg.style.transform = "rotate(-120deg)";
-            settingsImg.style.opacity = "1";
-            settingsButton.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
-            settingsMenu.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-            settingsMenu.style.width = "120px";
-            settingsMenu.style.height = "80px";
-            menuButtons.forEach(menuButton => {
-                menuButton.style.display = "block";
-            });
-        }
-        else {
-            menuDisplayed = false;
-            linksMenu.style.display = "none";
-            settingsImg.style.transform = "rotate(0deg)";
-            settingsImg.style.opacity = "0.5";
-            settingsButton.style.backgroundColor = "transparent";
-            settingsMenu.style.backgroundColor = "transparent";
-            settingsMenu.style.width = "40px";
-            settingsMenu.style.height = "40px";
-            menuButtons.forEach(menuButton => {
-                menuButton.style.display = "none";
-            });
-        }
-    }
+    });
 }
 function mouseEnterSettingsButton() {
     if (!menuDisplayed) {
@@ -298,6 +304,36 @@ function clickLinksMenuItems() {
     }
     linksValue = newLinksValue;
     setLinksValueCookie(newLinksValue);
+}
+function clickPlayPauseButton() {
+    if (!isMusicPlaying) {
+        playPauseImg.src = "assets/img/pause.png";
+        isMusicPlaying = true;
+    }
+    else {
+        playPauseImg.src = "assets/img/play.png";
+        isMusicPlaying = false;
+    }
+}
+function clickVolumeButton() {
+    if (isVolumeMuted) {
+        volumeImg.src = `assets/img/${getVolumeImageFromVolumeLevel()}`;
+        volumeButton.style.filter = "invert(1)";
+        isVolumeMuted = false;
+    }
+    else {
+        volumeImg.src = "assets/img/volume-x.svg";
+        volumeButton.style.filter = "invert(0)";
+        isVolumeMuted = true;
+    }
+}
+function getVolumeImageFromVolumeLevel() {
+    if (volume == 0)
+        return "volume-0.svg";
+    else if (volume < 10)
+        return "volume-1.svg";
+    else
+        return "volume-2.svg";
 }
 setup();
 displayTime();
