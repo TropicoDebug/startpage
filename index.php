@@ -121,6 +121,9 @@ if (isset($_POST['submit'])){
     </label>
   </div>
 </div>
+<div id="volume-menu" class="noselect">
+  <input type="range" orient="vertical" id="volume-slider" min=0 max=20 step=1>
+</div>
 <script>var exports = {};</script>
 <script type="text/javascript" src="js/constants.js"></script>
 <script type="text/javascript" src="js/globalData.js"></script>

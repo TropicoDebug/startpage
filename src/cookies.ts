@@ -30,3 +30,7 @@ function setLinksCookie(linksDisplayed:boolean){
 function setLinksValueCookie(linksValue:string){
     setCookie("linksValue", linksValue, 7);
 }
+
+function setVolumeCookie(volume:number){
+    
+}
