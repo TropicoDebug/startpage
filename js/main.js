@@ -28,6 +28,10 @@ function setupEventListeners() {
     });
     playPauseButton.addEventListener('click', clickPlayPauseButton);
     volumeButton.addEventListener('click', clickVolumeButton);
+    volumeButton.addEventListener('mouseenter', mouseEnterVolumeButton);
+    volumeButton.addEventListener('mouseleave', mouseLeaveVolumeButton);
+    volumeMenu.addEventListener('mouseenter', mouseEnterVolumeMenu);
+    volumeMenu.addEventListener('mouseleave', mouseLeaveVolumeMenu);
     main.addEventListener('click', clickMain);
     footer.addEventListener('click', clickFooter);
 }
@@ -334,6 +338,36 @@ function getVolumeImageFromVolumeLevel() {
         return "volume-1.svg";
     else
         return "volume-2.svg";
+}
+function mouseEnterVolumeButton() {
+    return __awaiter(this, void 0, void 0, function* () {
+        isMouseInVolumeMenu = true;
+        yield sleep(500);
+        if (isMouseInVolumeMenu) {
+            volumeMenu.style.display = "flex";
+        }
+    });
+}
+function mouseLeaveVolumeButton() {
+    return __awaiter(this, void 0, void 0, function* () {
+        isMouseInVolumeMenu = false;
+        yield sleep(500);
+        if (!isMouseInVolumeMenu) {
+            volumeMenu.style.display = "none";
+        }
+    });
+}
+function mouseEnterVolumeMenu() {
+    isMouseInVolumeMenu = true;
+}
+function mouseLeaveVolumeMenu() {
+    return __awaiter(this, void 0, void 0, function* () {
+        isMouseInVolumeMenu = false;
+        yield sleep(500);
+        if (!isMouseInVolumeMenu) {
+            volumeMenu.style.display = "none";
+        }
+    });
 }
 setup();
 displayTime();

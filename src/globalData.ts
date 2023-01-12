@@ -11,3 +11,4 @@ var isMouseInLinksMenu:boolean = false;
 var isMusicPlaying:boolean = false;
 var volume:number = 0;
 var isVolumeMuted = true;
+var isMouseInVolumeMenu:boolean = false;

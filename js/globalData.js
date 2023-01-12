@@ -7,3 +7,4 @@ var isMouseInLinksMenu = false;
 var isMusicPlaying = false;
 var volume = 0;
 var isVolumeMuted = true;
+var isMouseInVolumeMenu = false;

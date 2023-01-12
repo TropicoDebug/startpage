@@ -29,3 +29,5 @@ function setLinksCookie(linksDisplayed) {
 function setLinksValueCookie(linksValue) {
     setCookie("linksValue", linksValue, 7);
 }
+function setVolumeCookie(volume) {
+}

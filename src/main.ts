@@ -23,6 +23,10 @@ function setupEventListeners(){
 
     playPauseButton.addEventListener('click', clickPlayPauseButton);
     volumeButton.addEventListener('click', clickVolumeButton);
+    volumeButton.addEventListener('mouseenter', mouseEnterVolumeButton);
+    volumeButton.addEventListener('mouseleave', mouseLeaveVolumeButton);
+    volumeMenu.addEventListener('mouseenter', mouseEnterVolumeMenu);
+    volumeMenu.addEventListener('mouseleave', mouseLeaveVolumeMenu);
     
     main.addEventListener('click', clickMain);
     footer.addEventListener('click', clickFooter);
@@ -353,6 +357,37 @@ function getVolumeImageFromVolumeLevel(){
     if (volume == 0) return "volume-0.svg";
     else if (volume < 10) return "volume-1.svg";
     else return "volume-2.svg";
+}
+
+async function mouseEnterVolumeButton(){
+    isMouseInVolumeMenu = true;
+    await sleep(500);
+    // if the mouse is still on the button after 0.5 second we display the menu
+    if (isMouseInVolumeMenu){
+        volumeMenu.style.display = "flex";
+    }
+}
+
+async function mouseLeaveVolumeButton(){
+    isMouseInVolumeMenu = false;
+    await sleep(500);
+    // if the mouse is out of the button for more than 0.5 second we hide the menu
+    if (!isMouseInVolumeMenu){
+        volumeMenu.style.display = "none";
+    }
+}
+
+function mouseEnterVolumeMenu(){
+    isMouseInVolumeMenu = true;
+}
+
+async function mouseLeaveVolumeMenu(){
+    isMouseInVolumeMenu = false;
+    await sleep(500);
+    // if the mouse is out of the menu for more than 0.5 second we hide the menu
+    if (!isMouseInVolumeMenu){
+        volumeMenu.style.display = "none";
+    }
 }
 
 

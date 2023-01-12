@@ -20,8 +20,10 @@ const linksMenuCheckboxes:HTMLInputElement[] = Array.from(document.getElementsBy
 const playPauseButton:HTMLElement = document.getElementById('play-pause-button')!;
 const playPauseImg:HTMLImageElement = document.getElementById('play-pause-img')! as HTMLImageElement;
 
+
 const volumeButton:HTMLElement = document.getElementById('volume-button')!;
 const volumeImg:HTMLImageElement = document.getElementById('volume-img')! as HTMLImageElement;
+const volumeMenu:HTMLElement = document.getElementById('volume-menu')!;
 
 const main:HTMLElement = document.getElementById('main')!;
 const footer:HTMLElement = document.getElementById('footer')!;
