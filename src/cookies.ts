@@ -32,5 +32,9 @@ function setLinksValueCookie(linksValue:string){
 }
 
 function setVolumeCookie(volume:number){
-    
+    setCookie("volume", volume.toString(), 7);
+}
+
+function setVolumeMutedCookie(isVolumeMuted:boolean){
+    setCookie("isVolumeMuted", isVolumeMuted.toString(), 7);
 }

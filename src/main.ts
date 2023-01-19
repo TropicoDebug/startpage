@@ -2,6 +2,8 @@ function setup(){
     setupEventListeners();
     setupDisplayClock();
     setupDisplayLinks();
+    setupVolume();
+    setupVolumeMuted();
 }
 
 function setupEventListeners(){
@@ -27,6 +29,8 @@ function setupEventListeners(){
     volumeButton.addEventListener('mouseleave', mouseLeaveVolumeButton);
     volumeMenu.addEventListener('mouseenter', mouseEnterVolumeMenu);
     volumeMenu.addEventListener('mouseleave', mouseLeaveVolumeMenu);
+    volumeSlider.addEventListener('input', inputVolumeSlider);
+    volumeSlider.addEventListener('change', inputVolumeSlider);
     
     main.addEventListener('click', clickMain);
     footer.addEventListener('click', clickFooter);
@@ -99,6 +103,32 @@ function setupDisplayLinks(){
     }
 }
 
+function setupVolume(){
+    var cookie = getCookie('volume');
+    // if the cookie already exist we set volume with the right value
+    if (cookie){
+        volume = parseInt(cookie);
+    }
+    // we renew/create the cookie
+    setVolumeCookie(volume);
+    volumeSlider.value = volume.toString();
+}
+
+function setupVolumeMuted(){
+    var cookie = getCookie('isVolumeMuted');
+    // if the cookie already exist we set isVolumeMuted with the right value
+    if (cookie){
+        // we give the opposite value because we are going to call clickVolumeButton() after
+        // and this will invert the value of isVolumeMuted
+        if (cookie == "true") isVolumeMuted = false;
+        else isVolumeMuted = true;
+    }
+    // we renew/create the cookie
+    setVolumeMutedCookie(isVolumeMuted);
+    // Call the function to update the volume icon
+    clickVolumeButton();
+}
+
 async function defil() {
     var myText:string = "What are you looking for ";
     var text:string = "";
@@ -151,6 +181,7 @@ async function clickSettingsButton(){
             // close menu
             menuDisplayed = false;
             linksMenu.style.display = "none";
+            volumeMenu.style.display = "none";
             settingsImg.style.transform = "rotate(0deg)";
             settingsImg.style.opacity = "0.5";
             settingsButton.style.backgroundColor = "transparent";
@@ -179,6 +210,7 @@ async function clickSettingsButton(){
             // close menu
             menuDisplayed = false;
             linksMenu.style.display = "none";
+            volumeMenu.style.display = "none";
             settingsImg.style.transform = "rotate(0deg)";
             settingsImg.style.opacity = "0.5";
             settingsButton.style.backgroundColor = "transparent";
@@ -351,12 +383,18 @@ function clickVolumeButton(){
         volumeButton.style.filter = "invert(0)";
         isVolumeMuted = true;
     }
+    setVolumeMutedCookie(isVolumeMuted);
 }
 
 function getVolumeImageFromVolumeLevel(){
     if (volume == 0) return "volume-0.svg";
     else if (volume < 10) return "volume-1.svg";
     else return "volume-2.svg";
+}
+
+function setVolumeImageFromVolumeLevel(){
+    if (isVolumeMuted) volumeImg.src = "assets/img/volume-x.svg";
+    else volumeImg.src = `assets/img/${getVolumeImageFromVolumeLevel()}`;
 }
 
 async function mouseEnterVolumeButton(){
@@ -390,9 +428,19 @@ async function mouseLeaveVolumeMenu(){
     }
 }
 
+function inputVolumeSlider(){
+    // update the volume
+    volume = parseInt(volumeSlider.value);
+    // update the volume img
+    setVolumeImageFromVolumeLevel();
+    // setup cookies
+    setVolumeCookie(volume);
+}
+
 
 // main
 setup();
+// this update the clock value every second
 displayTime();
 // this call the appearing sentence animation
 defil();

@@ -15,5 +15,6 @@ const playPauseImg = document.getElementById('play-pause-img');
 const volumeButton = document.getElementById('volume-button');
 const volumeImg = document.getElementById('volume-img');
 const volumeMenu = document.getElementById('volume-menu');
+const volumeSlider = document.getElementById('volume-slider');
 const main = document.getElementById('main');
 const footer = document.getElementById('footer');

@@ -12,6 +12,8 @@ function setup() {
     setupEventListeners();
     setupDisplayClock();
     setupDisplayLinks();
+    setupVolume();
+    setupVolumeMuted();
 }
 function setupEventListeners() {
     settingsButton.addEventListener('click', clickSettingsButton);
@@ -32,6 +34,8 @@ function setupEventListeners() {
     volumeButton.addEventListener('mouseleave', mouseLeaveVolumeButton);
     volumeMenu.addEventListener('mouseenter', mouseEnterVolumeMenu);
     volumeMenu.addEventListener('mouseleave', mouseLeaveVolumeMenu);
+    volumeSlider.addEventListener('input', inputVolumeSlider);
+    volumeSlider.addEventListener('change', inputVolumeSlider);
     main.addEventListener('click', clickMain);
     footer.addEventListener('click', clickFooter);
 }
@@ -96,6 +100,25 @@ function setupDisplayLinks() {
         linkButton.style.filter = "invert(0)";
     }
 }
+function setupVolume() {
+    var cookie = getCookie('volume');
+    if (cookie) {
+        volume = parseInt(cookie);
+    }
+    setVolumeCookie(volume);
+    volumeSlider.value = volume.toString();
+}
+function setupVolumeMuted() {
+    var cookie = getCookie('isVolumeMuted');
+    if (cookie) {
+        if (cookie == "true")
+            isVolumeMuted = false;
+        else
+            isVolumeMuted = true;
+    }
+    setVolumeMutedCookie(isVolumeMuted);
+    clickVolumeButton();
+}
 function defil() {
     return __awaiter(this, void 0, void 0, function* () {
         var myText = "What are you looking for ";
@@ -147,6 +170,7 @@ function clickSettingsButton() {
             else {
                 menuDisplayed = false;
                 linksMenu.style.display = "none";
+                volumeMenu.style.display = "none";
                 settingsImg.style.transform = "rotate(0deg)";
                 settingsImg.style.opacity = "0.5";
                 settingsButton.style.backgroundColor = "transparent";
@@ -174,6 +198,7 @@ function clickSettingsButton() {
             else {
                 menuDisplayed = false;
                 linksMenu.style.display = "none";
+                volumeMenu.style.display = "none";
                 settingsImg.style.transform = "rotate(0deg)";
                 settingsImg.style.opacity = "0.5";
                 settingsButton.style.backgroundColor = "transparent";
@@ -330,6 +355,7 @@ function clickVolumeButton() {
         volumeButton.style.filter = "invert(0)";
         isVolumeMuted = true;
     }
+    setVolumeMutedCookie(isVolumeMuted);
 }
 function getVolumeImageFromVolumeLevel() {
     if (volume == 0)
@@ -338,6 +364,12 @@ function getVolumeImageFromVolumeLevel() {
         return "volume-1.svg";
     else
         return "volume-2.svg";
+}
+function setVolumeImageFromVolumeLevel() {
+    if (isVolumeMuted)
+        volumeImg.src = "assets/img/volume-x.svg";
+    else
+        volumeImg.src = `assets/img/${getVolumeImageFromVolumeLevel()}`;
 }
 function mouseEnterVolumeButton() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -368,6 +400,11 @@ function mouseLeaveVolumeMenu() {
             volumeMenu.style.display = "none";
         }
     });
+}
+function inputVolumeSlider() {
+    volume = parseInt(volumeSlider.value);
+    setVolumeImageFromVolumeLevel();
+    setVolumeCookie(volume);
 }
 setup();
 displayTime();
