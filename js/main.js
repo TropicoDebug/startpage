@@ -343,14 +343,17 @@ function clickPlayPauseButton() {
         playPauseImg.src = "assets/img/play.png";
         isMusicPlaying = false;
     }
+    changeMusicState();
 }
 function clickVolumeButton() {
     if (isVolumeMuted) {
+        music.volume = volume / 20;
         volumeImg.src = `assets/img/${getVolumeImageFromVolumeLevel()}`;
         volumeButton.style.filter = "invert(1)";
         isVolumeMuted = false;
     }
     else {
+        music.volume = 0;
         volumeImg.src = "assets/img/volume-x.svg";
         volumeButton.style.filter = "invert(0)";
         isVolumeMuted = true;
@@ -403,8 +406,19 @@ function mouseLeaveVolumeMenu() {
 }
 function inputVolumeSlider() {
     volume = parseInt(volumeSlider.value);
+    if (!isVolumeMuted)
+        music.volume = volume / 20;
     setVolumeImageFromVolumeLevel();
     setVolumeCookie(volume);
+}
+function changeMusicState() {
+    if (isMusicPlaying) {
+        music.volume = volume / 20;
+        music.play();
+    }
+    else {
+        music.pause();
+    }
 }
 setup();
 displayTime();

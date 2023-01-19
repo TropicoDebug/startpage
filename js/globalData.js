@@ -8,3 +8,4 @@ var isMusicPlaying = false;
 var volume = 0;
 var isVolumeMuted = true;
 var isMouseInVolumeMenu = false;
+var music = new Audio("assets/music/osc_ambient_time_1-8.mp3");
