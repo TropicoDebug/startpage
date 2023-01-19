@@ -129,6 +129,7 @@ if (isset($_POST['submit'])){
 <script type="text/javascript" src="js/globalData.js"></script>
 <script type="text/javascript" src="js/utils.js"></script>
 <script type="text/javascript" src="js/cookies.js"></script>
+<script type="text/javascript" src="js/setup.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
