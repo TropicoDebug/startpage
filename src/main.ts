@@ -6,7 +6,7 @@ function setup(){
     setupVolumeMuted();
 }
 
-function setupEventListeners(){
+function setupEventListeners() : void{
     settingsButton.addEventListener('click', clickSettingsButton);
     settingsButton.addEventListener('mouseenter', mouseEnterSettingsButton);
     settingsButton.addEventListener('mouseleave', mouseLeaveSettingsButton);
@@ -36,7 +36,7 @@ function setupEventListeners(){
     footer.addEventListener('click', clickFooter);
 }
 
-function setupDisplayClock(){
+function setupDisplayClock() : void{
     var cookie = getCookie('clockDisplayed');
     // if the cookie already exist we set clockDisplayed with the right value
     if (cookie){
@@ -56,7 +56,7 @@ function setupDisplayClock(){
     }
 }
 
-function setupDisplayLinks(){
+function setupDisplayLinks() : void{
     var cookie = getCookie('linksDisplayed');
     // if the cookie already exist we set linksDisplayed with the right value
     if (cookie){
@@ -103,7 +103,7 @@ function setupDisplayLinks(){
     }
 }
 
-function setupVolume(){
+function setupVolume() : void{
     var cookie = getCookie('volume');
     // if the cookie already exist we set volume with the right value
     if (cookie){
@@ -114,7 +114,7 @@ function setupVolume(){
     volumeSlider.value = volume.toString();
 }
 
-function setupVolumeMuted(){
+function setupVolumeMuted() : void{
     var cookie = getCookie('isVolumeMuted');
     // if the cookie already exist we set isVolumeMuted with the right value
     if (cookie){
@@ -129,7 +129,7 @@ function setupVolumeMuted(){
     clickVolumeButton();
 }
 
-async function defil() {
+async function defil() : Promise<void>{
     var myText:string = "What are you looking for ";
     var text:string = "";
     const input:HTMLInputElement = document.getElementById('labelsearch') as HTMLInputElement;
@@ -142,7 +142,7 @@ async function defil() {
     input.innerHTML += "<span id=\"blink\">?</span>";
 }
 
-async function blinkChar() {
+async function blinkChar() : Promise<void>{
     await sleep(500);
     const questionMark:HTMLInputElement = document.getElementById('blink') as HTMLInputElement;
     if (questionMark != null){
@@ -155,13 +155,13 @@ async function blinkChar() {
     setTimeout(blinkChar, randomIntFromInterval(1, 700));
 }
 
-function displayTime(){
+function displayTime() : void{
     clock.innerHTML = getTime();
     // update the clock every second
     setTimeout(displayTime, 1000);
 }
 
-async function clickSettingsButton(){
+async function clickSettingsButton() : Promise<void>{
     // desktop version
     if (screenWidth > 550){
         if (!menuDisplayed){
@@ -224,19 +224,19 @@ async function clickSettingsButton(){
     }
 }
 
-function mouseEnterSettingsButton(){
+function mouseEnterSettingsButton() : void{
     if (!menuDisplayed){
         settingsImg.style.opacity = "1";
     }
 }
 
-function mouseLeaveSettingsButton(){
+function mouseLeaveSettingsButton() : void{
     if (!menuDisplayed){
         settingsImg.style.opacity = "0.5";
     }
 }
 
-function clickClockButton(){
+function clickClockButton() : void{
     if (!clockDisplayed){
         // display clock
         clock.style.display = "inline-block";
@@ -252,21 +252,21 @@ function clickClockButton(){
     }
 }
 
-function clickMain(){
+function clickMain() : void{
     if (menuDisplayed){
         // close the settings menu
         clickSettingsButton();
     }
 }
 
-function clickFooter(){
+function clickFooter() : void{
     if (menuDisplayed){
         // close the settings menu
         clickSettingsButton();
     }
 }
 
-function clickLinkButton(){
+function clickLinkButton() : void{
     if (!linksDisplayed){
         var counter:number = 0;
         // display links using linksValue
@@ -289,18 +289,18 @@ function clickLinkButton(){
     }
 }
 
-function displayLinksMenu(){
+function displayLinksMenu() : void{
     // desktop version
     if (screenWidth > 550){
         linksMenu.style.display = "flex";
     }
 }
 
-function hideLinksMenu(){
+function hideLinksMenu() : void{
     linksMenu.style.display = "none";
 }
 
-async function mouseEnterLinkButton(){
+async function mouseEnterLinkButton() : Promise<void>{
     isMouseInLinksMenu = true;
     await sleep(500);
     // if the mouse is still on the button after 0.5 second we display the menu
@@ -309,7 +309,7 @@ async function mouseEnterLinkButton(){
     }
 }
 
-async function mouseLeaveLinkButton(){
+async function mouseLeaveLinkButton() : Promise<void>{
     isMouseInLinksMenu = false;
     await sleep(500);
     // if the mouse is out of the button for more than 0.5 second we hide the menu
@@ -318,11 +318,11 @@ async function mouseLeaveLinkButton(){
     }
 }
 
-function mouseEnterLinksMenu(){
+function mouseEnterLinksMenu() : void{
     isMouseInLinksMenu = true;
 }
 
-async function mouseLeaveLinksMenu(){
+async function mouseLeaveLinksMenu() : Promise<void>{
     isMouseInLinksMenu = false;
     await sleep(500);
     // if the mouse is out of the menu for more than 0.5 second we hide the menu
@@ -331,7 +331,7 @@ async function mouseLeaveLinksMenu(){
     }
 }   
 
-function clickLinksMenuItems(){
+function clickLinksMenuItems() : void{
     var newLinksValue:string = "";
     if (linksDisplayed){
         // update the displayed links and linksValue
@@ -359,7 +359,7 @@ function clickLinksMenuItems(){
     setLinksValueCookie(newLinksValue);
 }
 
-function clickPlayPauseButton(){
+function clickPlayPauseButton() : void{
     if (!isMusicPlaying){
         // play music and change img
         playPauseImg.src = "assets/img/pause.png";
@@ -372,7 +372,7 @@ function clickPlayPauseButton(){
     changeMusicState();
 }
 
-function clickVolumeButton(){
+function clickVolumeButton() : void{
     if (isVolumeMuted){
         // unmute the music
         music.volume = volume/20;
@@ -389,18 +389,18 @@ function clickVolumeButton(){
     setVolumeMutedCookie(isVolumeMuted);
 }
 
-function getVolumeImageFromVolumeLevel(){
+function getVolumeImageFromVolumeLevel() : string{
     if (volume == 0) return "volume-0.svg";
     else if (volume < 10) return "volume-1.svg";
     else return "volume-2.svg";
 }
 
-function setVolumeImageFromVolumeLevel(){
+function setVolumeImageFromVolumeLevel() : void{
     if (isVolumeMuted) volumeImg.src = "assets/img/volume-x.svg";
     else volumeImg.src = `assets/img/${getVolumeImageFromVolumeLevel()}`;
 }
 
-async function mouseEnterVolumeButton(){
+async function mouseEnterVolumeButton() : Promise<void>{
     isMouseInVolumeMenu = true;
     await sleep(500);
     // if the mouse is still on the button after 0.5 second we display the menu
@@ -409,7 +409,7 @@ async function mouseEnterVolumeButton(){
     }
 }
 
-async function mouseLeaveVolumeButton(){
+async function mouseLeaveVolumeButton() : Promise<void>{
     isMouseInVolumeMenu = false;
     await sleep(500);
     // if the mouse is out of the button for more than 0.5 second we hide the menu
@@ -418,11 +418,11 @@ async function mouseLeaveVolumeButton(){
     }
 }
 
-function mouseEnterVolumeMenu(){
+function mouseEnterVolumeMenu() : void{
     isMouseInVolumeMenu = true;
 }
 
-async function mouseLeaveVolumeMenu(){
+async function mouseLeaveVolumeMenu() : Promise<void>{
     isMouseInVolumeMenu = false;
     await sleep(500);
     // if the mouse is out of the menu for more than 0.5 second we hide the menu
@@ -431,7 +431,7 @@ async function mouseLeaveVolumeMenu(){
     }
 }
 
-function inputVolumeSlider(){
+function inputVolumeSlider() : void{
     // update the volume
     volume = parseInt(volumeSlider.value);
     if (!isVolumeMuted) music.volume = volume/20;
@@ -441,7 +441,7 @@ function inputVolumeSlider(){
     setVolumeCookie(volume);
 }
 
-function changeMusicState(){
+function changeMusicState() : void{
     if (isMusicPlaying){
         // play music
         music.volume = volume/20;
