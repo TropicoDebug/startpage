@@ -442,9 +442,10 @@ function inputVolumeSlider(){
 }
 
 function changeMusicState(){
-    if (isMusicPlaying){
+    if (!isMusicPlaying){
         // play music
         music.volume = volume/20;
+        if (isVolumeMuted) music.volume = 0;
         music.play();
     } else{
         // pause music

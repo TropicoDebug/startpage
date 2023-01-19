@@ -412,8 +412,10 @@ function inputVolumeSlider() {
     setVolumeCookie(volume);
 }
 function changeMusicState() {
-    if (isMusicPlaying) {
+    if (!isMusicPlaying) {
         music.volume = volume / 20;
+        if (isVolumeMuted)
+            music.volume = 0;
         music.play();
     }
     else {
